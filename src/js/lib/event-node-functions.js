@@ -1,20 +1,6 @@
+import { CUSTOM_UI_EVENT_PREFIX, MEISTER_DATA_EVENTS_ATTR } from './constants';
+import { extractNodesWithSelector } from './utilities';
 import { CustomUiEvent, CustomUiElementRegisteredEvent } from './event-classes';
-
-/**
- * @constant
- * @memberof module:CustomUi
- * @type {String}
- * @default
- */
-export const MEISTER_DATA_EVENTS_ATTR = 'data-mstr-events';
-
-/**
- * @constant
- * @memberof module:CustomUi
- * @type {String}
- * @default
- */
-export const CUSTOM_UI_EVENT_PREFIX = 'ui';
 
 /**
  * Returns a list of all child nodes that have meister event data properties. Also includes the root node
@@ -24,7 +10,7 @@ export const CUSTOM_UI_EVENT_PREFIX = 'ui';
  * @return {HTMLElement[]}        Array with nodes that have the meister event data property.
  */
 export function extractEventNodes(rootNode) {
-    const nodeArray = Array.prototype.slice.call(rootNode.querySelectorAll(`[${MEISTER_DATA_EVENTS_ATTR}]`));
+    const nodeArray = extractNodesWithSelector(rootNode, `[${MEISTER_DATA_EVENTS_ATTR}]`);
 
     if (rootNode.getAttribute(MEISTER_DATA_EVENTS_ATTR)) {
         return nodeArray.concat(rootNode);
@@ -65,8 +51,7 @@ export function createRegisterDataEvents(meister, onElementRegistered = () => {}
      * Map events in the MEISTER_DATA_EVENTS_ATTR data attribute to meister events and call a
      * callback when done.
      * @function module:CustomUi~registerDataEvents
-     * @param  {HTMLElement} domNode Node with data-mstr-events that need to be mapped to meister
-     *                               custom ui events.
+     * @param  {HTMLElement} domNode Node with data-mstr-events that need to be mapped to meister custom ui events.
      */
     return function registerDataEvents(domNode) {
         const rawAttributes = domNode.getAttribute(MEISTER_DATA_EVENTS_ATTR);
@@ -78,7 +63,7 @@ export function createRegisterDataEvents(meister, onElementRegistered = () => {}
         const domNodeId = domNode.id ? `${domNode.id}:` : '';
         const handleName = `${CUSTOM_UI_EVENT_PREFIX}:${domNodeId}`;
 
-        eventsArray.forEach(eventName => {
+        eventsArray.forEach((eventName) => {
             const meisterEventName = `${handleName}${eventName}`;
             domNode.addEventListener(eventName, (e) => {
                 meister.trigger(meisterEventName, new CustomUiEvent(meister, domNode, meisterEventName, eventName, e));

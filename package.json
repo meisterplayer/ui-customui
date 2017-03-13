@@ -1,0 +1,20 @@
+{
+  "name": "@npm-wearetriple/meister-plugin-customui",
+  "version": "1.0.0",
+  "description": "Build a custom ui from scratch or use preconfigured elements.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "meister",
+    "plugin",
+    "ui",
+    "custom"
+  ],
+  "author": "Triple",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@npm-wearetriple/js-dev": "^3.1.0"
+  }
+}
