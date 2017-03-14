@@ -17,6 +17,12 @@ class CustomUi extends Meister.Ui {
     constructor(config, meister) {
         super(config, meister);
 
+        if (!this.config.ui) {
+            console.error(`${CustomUi.pluginName}: No ui node or url defined, plugin will not load.`);
+            // HACK: This overrides constructor behaviour and makes it not return an instance...
+            return [];
+        }
+
         if (this.meister.utils.isDOMNode(this.config.ui)) {
             this.element = this.config.ui;
             this.processTemplate();
@@ -28,6 +34,9 @@ class CustomUi extends Meister.Ui {
             xhr.addEventListener('error', this.onTemplateRequestError.bind(this), false);
             xhr.send();
         }
+
+        // Consistent return.
+        return this;
     }
 
     /**
@@ -52,6 +61,8 @@ class CustomUi extends Meister.Ui {
         this.processTemplate();
         // Force a redraw of the ui.
         this.draw();
+        // Notify user that the remote template has been parsed and drawn successfully.
+        if (this.config.remoteTemplateReady) { this.config.remoteTemplateReady(); }
     }
 
     /**
@@ -59,14 +70,14 @@ class CustomUi extends Meister.Ui {
      * @param {ProgressEvent} loadEvent Event object from the XMLHttpRequest.
      */
     onTemplateRequestError(loadEvent) {
-        console.error('CustomUi : error loading the template:', loadEvent.target);
+        console.error(`${CustomUi.pluginName}: error loading the template. `, loadEvent.target);
     }
 
     /**
      * Replace marked nodes with their StandardUi equivalents, and register events on the specified nodes.
      */
     processTemplate() {
-        extractStandardNodes(this.element).forEach(createLoadStandardElement(this.meister, this.config.standard || {}));
+        extractStandardNodes(this.element).forEach(createLoadStandardElement(this.meister, this.config.standard));
         extractEventNodes(this.element).forEach(createRegisterDataEvents(this.meister, this.config.registeredCallback));
     }
 
@@ -77,7 +88,6 @@ class CustomUi extends Meister.Ui {
         if (!this.element) { return; }
 
         this.controlsWrapper.appendChild(this.element);
-        this.meister.trigger('customUiReady');
     }
 }
 
