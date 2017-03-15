@@ -24,51 +24,6 @@ player.on('ui:custom-element:mouseover', function (e) {
 });
 ```
 
-#### Custom Events ####
-
-You can register events to your elements by setting the `data-mstr-events` attribute on the element, with a comma seperated list of eventnames as the value. Should one of the specified events trigger on the DOM node this will be emitted through the Meister instance's event bus with the following format: `"ui:[<element-id>]:<eventtype>"`.
-
-For example, take the template below:
-
-```HTML
-<div id="custom-element-1" data-mstr-events="mouseover" class="custom-wrapper-class">
-    <div id="custom-element-2" data-mstr-events="mousedown, mousemove, mouseup" class="custom-inner-class">
-        <div data-mstr-events="click" class="custom-button-class">
-
-        </div>
-    </div>
-</div>
-```
-
-As you can see it contains three elements, and all three elements have the `data-mstr-events` attribute. This would result in the following event handles:
-
-- "ui:custom-element-1:mouseover"
-- "ui:custom-element-2:mousedown"
-- "ui:custom-element-2:mousemove"
-- "ui:custom-element-2:mouseup"
-- "ui:click" (Since the innermost `div` does not have an id the event is not namespaced)
-
-You can register callbacks for these handles on the Meister instance: 
-
-```JavaScript
-player.on('ui:custom-element-1:mouseover', function(customEvent) {
-    console.log('Mouseover on custom-element-1', customEvent);
-});
-```
-
-All custom ui events callbacks are called with a `CustomUiEvent` as the single argument. In this event the following properties are available:
-- **element** :: *HTMLElement*  
-    Reference to the DOM node on which the event was registered.
-- **event** :: *Event*  
-    The original DOM event.
-- **eventName** :: *String*  
-    The complete event string the callback was registered under. Follows the following format `"ui:[<element-id>]:<eventtype>"`.
-- **eventType** :: *String*  
-    The type of event, that was emitted from the DOM. Examples include `"mouseover"` or `"click"`. This is always the same as the `<eventtype>` part of the eventName.
-- **meister** :: *Meister*  
-    Reference to the meister instance the event was emitted on.
-
-
 ##### Registering Elements #####
 
 By passing a function to the `registeredCallback` config object you can further customize your elements. This is called with a `CustomUiElementRegisteredEvent` for every element that has the `"data-mstr-events"` attribute. This allows you to bind Meister events back to the element:
@@ -220,3 +175,51 @@ When using a remote template there are a couple of caveats to take into consider
 </div>
 <!-- End of file: templates/custom-template.html -->
 ```
+
+
+
+#### Option: Custom Events ####
+
+Optionally you can use the eventbus of Meisterplayer to register and handle UI-events from the customUI. An advantage of using Meister's eventbus is the reference to the meister-instance which triggered the UI-event, you would have to maintain a registry of instances and some way to determine the instance that fired an UI-event if you'd chosen to implement your own event-handling.
+
+You can register events to your elements by setting the `data-mstr-events` attribute on the element, with a comma seperated list of eventnames as the value. Should one of the specified events trigger on the DOM node this will be emitted through the Meister instance's event bus with the following format: `"ui:[<element-id>]:<eventtype>"`.
+
+For example, take the template below:
+
+```HTML
+<div id="custom-element-1" data-mstr-events="mouseover" class="custom-wrapper-class">
+    <div id="custom-element-2" data-mstr-events="mousedown, mousemove, mouseup" class="custom-inner-class">
+        <div data-mstr-events="click" class="custom-button-class">
+
+        </div>
+    </div>
+</div>
+```
+
+As you can see it contains three elements, and all three elements have the `data-mstr-events` attribute. This would result in the following event handles:
+
+- "ui:custom-element-1:mouseover"
+- "ui:custom-element-2:mousedown"
+- "ui:custom-element-2:mousemove"
+- "ui:custom-element-2:mouseup"
+- "ui:click" (Since the innermost `div` does not have an id the event is not namespaced)
+
+You can register callbacks for these handles on the Meister instance: 
+
+```JavaScript
+player.on('ui:custom-element-1:mouseover', function(customEvent) {
+    console.log('Mouseover on custom-element-1', customEvent);
+});
+```
+
+All custom ui events callbacks are called with a `CustomUiEvent` as the single argument. In this event the following properties are available:
+- **element** :: *HTMLElement*  
+    Reference to the DOM node on which the event was registered.
+- **event** :: *Event*  
+    The original DOM event.
+- **eventName** :: *String*  
+    The complete event string the callback was registered under. Follows the following format `"ui:[<element-id>]:<eventtype>"`.
+- **eventType** :: *String*  
+    The type of event, that was emitted from the DOM. Examples include `"mouseover"` or `"click"`. This is always the same as the `<eventtype>` part of the eventName.
+- **meister** :: *Meister*  
+    Reference to the meister instance the event was emitted on.
