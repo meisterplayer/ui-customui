@@ -44,9 +44,9 @@ export function selectResolution(qualityMapping, index, silent = false) {
 
         const hasBitrate = !!mapping.bitrates.find(bitrate => bitrate.bitrateIndex === index);
         if (hasBitrate) {
-            mapping.option.selected.classList.add('icon_icCheck');
+            mapping.option.selected.classList.add('pf-icon_icCheck');
         } else {
-            mapping.option.selected.classList.remove('icon_icCheck');
+            mapping.option.selected.classList.remove('pf-icon_icCheck');
         }
     });
 

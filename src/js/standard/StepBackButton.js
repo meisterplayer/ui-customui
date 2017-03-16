@@ -9,8 +9,8 @@ class StepBackButton extends BaseElement {
         this.classListAdd(this.element, 'pf-ui-element', 'pf-ui-element-left', 'pf-ui-element-active');
 
         // Default
-        this.classListAdd(this.element, 'icon');
-        this.classListAdd(this.element, 'icon_icStepBackward');
+        this.classListAdd(this.element, 'pf-icon');
+        this.classListAdd(this.element, 'pf-icon_icStepBackward');
 
         // Register event listeners
         this.element.addEventListener('click', () => this.onClick());

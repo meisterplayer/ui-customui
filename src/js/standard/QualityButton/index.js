@@ -14,7 +14,7 @@ class QualityButton extends BaseElement {
         this.element = document.createElement('div');
 
         this.classListAdd(this.element, 'pf-ui-element', 'pf-ui-element-right', 'pf-ui-element-active');
-        this.classListAdd(this.element, 'icon', 'icon_icHd');
+        this.classListAdd(this.element, 'pf-icon', 'pf-icon_icHd');
         this.classListAdd(this.element, 'pf-ui-element-hidden');
 
         this.qualitySelector = document.createElement('div');
@@ -130,7 +130,7 @@ class QualityButton extends BaseElement {
 
         qualityOption.selected = document.createElement('div');
         qualityOption.selected.classList.add('pf-quality-option-select');
-        qualityOption.selected.classList.add('icon');
+        qualityOption.selected.classList.add('pf-icon');
         // Check for mobile.
         if (this.isMobile) qualityOption.selected.classList.add('pf-mobile');
         qualityOption.appendChild(qualityOption.selected);

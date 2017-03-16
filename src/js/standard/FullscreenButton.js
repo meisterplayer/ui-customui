@@ -13,7 +13,7 @@ class FullscreenButton extends BaseElement {
             this.classListAdd(this.element, 'pf-ui-element-active');
         }
 
-        this.classListAdd(this.element, 'icon', 'icon_icFullscreen');
+        this.classListAdd(this.element, 'pf-icon', 'pf-icon_icFullscreen');
 
         this.element.addEventListener('click', () => this.toggleFullscreen());
 
@@ -26,11 +26,11 @@ class FullscreenButton extends BaseElement {
             || document.mozFullScreenElement;
 
         if (fullscreenElement) {
-            this.classListAdd(this.element, 'icon_icFullscreenExit');
-            this.classListRemove(this.element, 'icon_icFullscreen');
+            this.classListAdd(this.element, 'pf-icon_icFullscreenExit');
+            this.classListRemove(this.element, 'pf-icon_icFullscreen');
         } else {
-            this.classListAdd(this.element, 'icon_icFullscreen');
-            this.classListRemove(this.element, 'icon_icFullscreenExit');
+            this.classListAdd(this.element, 'pf-icon_icFullscreen');
+            this.classListRemove(this.element, 'pf-icon_icFullscreenExit');
         }
     }
 

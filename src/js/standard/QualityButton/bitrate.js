@@ -13,9 +13,9 @@ export function prepareBitrateOption(element, bitrate, index, transform) {
 export function selectBitrate(bitrates, index, silent) {
     bitrates.forEach(bitrate => {
         if (bitrate.index === index) {
-            bitrate.option.selected.classList.add('icon_icCheck');
+            bitrate.option.selected.classList.add('pf-icon_icCheck');
         } else {
-            bitrate.option.selected.classList.remove('icon_icCheck');
+            bitrate.option.selected.classList.remove('pf-icon_icCheck');
         }
     });
 

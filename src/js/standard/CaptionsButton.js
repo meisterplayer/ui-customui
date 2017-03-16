@@ -6,7 +6,7 @@ class CaptionsButton extends BaseElement {
 
         this.element = document.createElement('div');
         this.classListAdd(this.element, 'pf-ui-element', 'pf-ui-element-right', 'pf-ui-element-active');
-        this.classListAdd(this.element, 'icon', 'icon_icCc');
+        this.classListAdd(this.element, 'pf-icon', 'pf-icon_icCc');
         this.classListAdd(this.element, 'pf-ui-element-hidden');
 
         this.captionSelector = document.createElement('div');
@@ -101,7 +101,7 @@ class CaptionsButton extends BaseElement {
 
         languageOption.selected = document.createElement('div');
         languageOption.selected.classList.add('pf-quality-option-select');
-        languageOption.selected.classList.add('icon');
+        languageOption.selected.classList.add('pf-icon');
         // Check for mobile.
         if (this.isMobile) languageOption.selected.classList.add('pf-mobile');
         languageOption.appendChild(languageOption.selected);
@@ -115,7 +115,7 @@ class CaptionsButton extends BaseElement {
 
     selectLang(languageCode) {
         this.captions.forEach((caption) => {
-            caption.option.selected.classList.remove('icon_icCheck');
+            caption.option.selected.classList.remove('pf-icon_icCheck');
         });
 
         if (languageCode === 'none') {
@@ -125,7 +125,7 @@ class CaptionsButton extends BaseElement {
 
         const newCaption = this.captions.find((caption) => caption.lang === languageCode);
 
-        newCaption.option.selected.classList.add('icon_icCheck');
+        newCaption.option.selected.classList.add('pf-icon_icCheck');
         this.meister.trigger('requestCaptions', newCaption);
     }
 }

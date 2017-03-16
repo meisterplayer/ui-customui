@@ -9,8 +9,8 @@ class StepForwardButton extends BaseElement {
         this.classListAdd(this.element, 'pf-ui-element', 'pf-ui-element-left', 'pf-ui-element-active');
 
         // Default
-        this.classListAdd(this.element, 'icon');
-        this.classListAdd(this.element, 'icon_icStepForward');
+        this.classListAdd(this.element, 'pf-icon');
+        this.classListAdd(this.element, 'pf-icon_icStepForward');
 
         // Register event listeners
         this.element.addEventListener('click', () => this.onClick());

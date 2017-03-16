@@ -13,8 +13,8 @@ class PlayButton extends BaseElement {
         this.isLive = false;
 
         // Default
-        this.classListAdd(this.element, 'icon');
-        this.classListAdd(this.element, 'icon_icPlay');
+        this.classListAdd(this.element, 'pf-icon');
+        this.classListAdd(this.element, 'pf-icon_icPlay');
 
         // Register event listeners
         this.element.addEventListener('click', () => this.onClick());
@@ -43,17 +43,17 @@ class PlayButton extends BaseElement {
 
     toggleIcon() {
         if (this.isLive && this.config.disablePauseWithLive && this.meister.playing && this.type === 'normal') {
-            this.classListRemove(this.element, 'icon_icPlay');
-            this.classListRemove(this.element, 'icon_icPause');
+            this.classListRemove(this.element, 'pf-icon_icPlay');
+            this.classListRemove(this.element, 'pf-icon_icPause');
             return;
         }
 
         if (this.meister.playing) {
-            this.classListAdd(this.element, 'icon_icPause');
-            this.classListRemove(this.element, 'icon_icPlay');
+            this.classListAdd(this.element, 'pf-icon_icPause');
+            this.classListRemove(this.element, 'pf-icon_icPlay');
         } else {
-            this.classListRemove(this.element, 'icon_icPause');
-            this.classListAdd(this.element, 'icon_icPlay');
+            this.classListRemove(this.element, 'pf-icon_icPause');
+            this.classListAdd(this.element, 'pf-icon_icPlay');
         }
     }
 }

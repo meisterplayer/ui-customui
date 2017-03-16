@@ -10,11 +10,11 @@ class PlaylistButtons extends BaseElement {
 
         this.prevButton = document.createElement('div');
         this.classListAdd(this.prevButton, 'pf-ui-element');
-        this.classListAdd(this.prevButton, 'icon', 'icon_icPrev');
+        this.classListAdd(this.prevButton, 'pf-icon', 'pf-icon_icPrev');
 
         this.nextButton = document.createElement('div');
         this.classListAdd(this.nextButton, 'pf-ui-element');
-        this.classListAdd(this.nextButton, 'icon', 'icon_icNext');
+        this.classListAdd(this.nextButton, 'pf-icon', 'pf-icon_icNext');
 
         this.prevButton.addEventListener('click', () => this.meister.trigger('playlistPrevious'));
         this.nextButton.addEventListener('click', () => this.meister.trigger('playlistNext'));

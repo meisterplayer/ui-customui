@@ -19,7 +19,7 @@ class VolumeSlider extends BaseElement {
 
         this.volumeButton = document.createElement('div');
         this.classListAdd(this.volumeButton, 'pf-volume-button');
-        this.classListAdd(this.volumeButton, 'icon', 'icon_icVol0');
+        this.classListAdd(this.volumeButton, 'pf-icon', 'pf-icon_icVol0');
         this.element.appendChild(this.volumeButton);
 
         this.sliderWrapper = document.createElement('div');
@@ -148,7 +148,7 @@ class VolumeSlider extends BaseElement {
 
     clearIcons() {
         for (let i = 0; i <= 3; i++) {
-            this.classListRemove(this.volumeButton, `icon_icVol${i}`);
+            this.classListRemove(this.volumeButton, `pf-icon_icVol${i}`);
         }
     }
 
@@ -168,7 +168,7 @@ class VolumeSlider extends BaseElement {
             iconNum = 3;
         }
 
-        this.classListAdd(this.volumeButton, `icon_icVol${iconNum}`);
+        this.classListAdd(this.volumeButton, `pf-icon_icVol${iconNum}`);
     }
 
     normalizeEventPosition(e) {
