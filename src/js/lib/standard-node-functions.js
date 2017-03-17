@@ -25,8 +25,8 @@ function formatElementName(elementName = '') {
 /**
  * Create a function that can be used to replace nodes with Standard Ui elements.
  * @memberof module:CustomUi
- * @param  {Meister} meister     [description]
- * @param  {Object} [config={}] [description]
+ * @param  {Meister} meister     Meister instance to be used in the event callbacks.
+ * @param  {Object} [config={}]  StandardUi config to be used when creating standard components.
  * @return {module:CustomUi~loadStandardElement} Function that can be used to replace nodes with Standard Ui elements.
  */
 export function createLoadStandardElement(meister, config = {}) {
