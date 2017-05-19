@@ -1,0 +1,17 @@
+<a name="1.0.0"></a>
+# 1.0.0 (2017-03-19)
+
+
+### Bug Fixes
+
+* **classes:** Namespace .icon -> .pf-icon ([baa8a11](https://git.triple-it.nl/meister-player/plugin.ui.custom/commits/baa8a11))
+
+
+### Features
+
+* **custom:** Add initial support for creating custom ui ([e28ca0e](https://git.triple-it.nl/meister-player/plugin.ui.custom/commits/e28ca0e))
+* **remote:** Add option to load remote templates ([2a0d2b8](https://git.triple-it.nl/meister-player/plugin.ui.custom/commits/2a0d2b8))
+* **standard:** Add option to use elements from standard ui ([c85d48a](https://git.triple-it.nl/meister-player/plugin.ui.custom/commits/c85d48a))
+
+
+
