@@ -1,5 +1,5 @@
 {
-  "name": "@npm-wearetriple/meister-plugin-customui",
+  "name": "@meisterplayer/plugin-customui",
   "version": "1.0.0",
   "description": "Build a custom ui from scratch or use preconfigured elements.",
   "main": "index.js",
@@ -15,6 +15,9 @@
   "author": "Triple",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@npm-wearetriple/js-dev": "^3.1.0"
+    "gulp": "^3.9.1",
+    "meister-gulp-webpack-tasks": "^1.0.7",
+    "meister-js-dev": "^3.1.0",
+    "yargs": "^8.0.1"
   }
 }

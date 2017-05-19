@@ -1,9 +1,38 @@
 const gulp = require('gulp');
 const argv = require('yargs').argv;
-const { changelogModule, cleanModule, jsdocModule, versioningModule } = require('@npm-wearetriple/js-dev').gulp;
+const { changelogModule, cleanModule, jsdocModule, versioningModule } = require('meister-js-dev').gulp;
+const { createBuildTask, createConfig, createCompiler } = require('meister-gulp-webpack-tasks');
 
-gulp.task('docs', jsdocModule.createGenerateDocs('./src/js/**/*.js', './docs/jsdoc'));
-gulp.task('clean:docs', cleanModule.createClean('./docs/jsdoc'));
+// Build tasks.
+const MODULE_NAME = 'CustomUi';
+
+gulp.task('build', (done) => {
+    const bundleConfig = createConfig('./index.js', `build/${MODULE_NAME}.js`, false);
+    const bundleCompiler = createCompiler(bundleConfig);
+
+    createBuildTask(bundleCompiler)(done);
+});
+
+gulp.task('build:min', (done) => {
+    const bundleConfig = createConfig('./index.js', `dist/${MODULE_NAME}.min.js`, true);
+    const bundleCompiler = createCompiler(bundleConfig);
+
+    createBuildTask(bundleCompiler)(done);
+});
+
+gulp.task('build:dist', (done) => {
+    const bundleConfig = createConfig('./index.js', `dist/${MODULE_NAME}.js`, false);
+    const bundleCompiler = createCompiler(bundleConfig);
+
+    createBuildTask(bundleCompiler)(done);
+});
+
+// Documentation tasks.
+gulp.task('docs', jsdocModule.createGenerateDocs('./src/js/**/*.js', './docs/js-docs'));
+gulp.task('clean:docs', cleanModule.createClean('./docs/js-docs'));
+
+gulp.task('clean:build', cleanModule.createClean('./build/**'));
+gulp.task('clean:dist', cleanModule.createClean('./dist/**'));
 
 // Versioning tasks.
 let type = 'patch';
