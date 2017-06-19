@@ -1,3 +1,5 @@
+import styles from './styles.scss';
+
 export function prepareBitrateOption(element, bitrate, index, transform) {
     const qualityOption = element;
 
@@ -11,11 +13,11 @@ export function prepareBitrateOption(element, bitrate, index, transform) {
 }
 
 export function selectBitrate(bitrates, index, silent) {
-    bitrates.forEach(bitrate => {
+    bitrates.forEach((bitrate) => {
         if (bitrate.index === index) {
-            bitrate.option.selected.classList.add('pf-icon_icCheck');
+            bitrate.option.classList.add(styles.isActive);
         } else {
-            bitrate.option.selected.classList.remove('pf-icon_icCheck');
+            bitrate.option.classList.remove(styles.isActive);
         }
     });
 

@@ -25,7 +25,11 @@ class BaseElement {
     }
 
     classListAdd(element, ...classNames) {
-        classNames.forEach(className => { element.classList.add(className); });
+        classNames.forEach((className) => {
+            if (className) {
+                element.classList.add(className);
+            }
+        });
 
         if (this.isMobile) {
             element.classList.add('pf-mobile');
@@ -33,7 +37,7 @@ class BaseElement {
     }
 
     classListRemove(element, ...classNames) {
-        classNames.forEach(className => { element.classList.remove(className); });
+        classNames.forEach((className) => { element.classList.remove(className); });
     }
 
     getNode() {

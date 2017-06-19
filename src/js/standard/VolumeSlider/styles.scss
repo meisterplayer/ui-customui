@@ -1,0 +1,48 @@
+@import '../global-styles';
+
+:local .volume {
+    position: relative;
+}
+
+:local .container {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-bottom: 15px;
+
+    &.isClosed {
+        display: none;
+    }
+}
+
+:local .inner {
+    padding: 16px 18px;
+    background-color: $color-background;
+    border-radius: $border-radius;
+}
+
+:local .volumeBar {
+    position: relative;
+    height: 100px;
+    width: 3px;
+    background-color: $color-foreground;
+}
+
+:local .volumeBarFill {
+    position: relative;
+    height: 100%;
+    background-color: $color-primary;
+    transform-origin: bottom center;
+}
+
+:local .volumeBarFigure {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: $dot-size;
+    height: $dot-size;
+    border-radius: 50%;
+    background-color: $color-foreground;
+    transform: translate(-50%, 50%);
+}

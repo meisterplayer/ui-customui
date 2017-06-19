@@ -1,0 +1,12 @@
+:local .container {
+    white-space: nowrap;
+}
+
+:local .currentTime { }
+
+:local .seperator {
+    display: inline-block;
+    padding: 0 .1em;
+}
+
+:local .duration { }

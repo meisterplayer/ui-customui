@@ -1,26 +1,33 @@
-import BaseElement from './BaseElement';
+import BaseElement from '../BaseElement';
+import styles from './styles.scss';
 
 class SeekbarPreview extends BaseElement {
     constructor(meister) {
         super(meister);
 
+        // preview element
         this.element = document.createElement('div');
-        this.classListAdd(this.element, 'pf-seek-bar-preview', 'no-preview');
-        this.classListAdd(this.element, 'pf-ui-element-hidden');
+        this.classListAdd(
+            this.element,
+            styles.container,
+            styles.isHidden,
+        );
 
+        // seekbar preview image
         this.seekBarPreviewImage = document.createElement('img');
         this.classListAdd(this.seekBarPreviewImage, 'pf-seek-bar-preview-image');
         this.seekBarPreviewImage.src = '';
         this.element.appendChild(this.seekBarPreviewImage);
 
+        // seekbar preview time
         this.seekBarPreviewTime = document.createElement('span');
         this.seekBarPreviewTime.textContent = '0:00';
-        this.classListAdd(this.seekBarPreviewTime, 'pf-seek-bar-preview-time');
+        this.classListAdd(this.seekBarPreviewTime, styles.previewTime);
         this.element.appendChild(this.seekBarPreviewTime);
 
         this.images = [];
 
-        this.on('itemTimeInfo', (timeInfo) => this.onItemTimeInfo(timeInfo));
+        this.on('itemTimeInfo', timeInfo => this.onItemTimeInfo(timeInfo));
 
         this.on('itemImagestream', (info) => {
             this.images = info.images;
@@ -45,11 +52,11 @@ class SeekbarPreview extends BaseElement {
     }
 
     show() {
-        this.classListRemove(this.element, 'pf-ui-element-hidden');
+        this.classListRemove(this.element, styles.isHidden);
     }
 
     hide() {
-        this.classListAdd(this.element, 'pf-ui-element-hidden');
+        this.classListAdd(this.element, styles.isHidden);
     }
 
     update(percentage) {

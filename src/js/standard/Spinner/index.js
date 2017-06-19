@@ -1,4 +1,5 @@
-import BaseElement from './BaseElement';
+import BaseElement from '../BaseElement';
+import styles from './styles.scss';
 
 class Spinner extends BaseElement {
     constructor(meister) {
@@ -7,14 +8,14 @@ class Spinner extends BaseElement {
         this.meister = meister;
 
         this.element = document.createElement('div');
-        this.classListAdd(this.element, 'pf-spinner-wrapper');
+        this.classListAdd(this.element, styles.container);
 
         this.spinner = document.createElement('div');
-        this.classListAdd(this.spinner, 'pf-spinner-loading');
+        this.classListAdd(this.spinner, styles.spinner);
         this.element.appendChild(this.spinner);
 
         this.spinnerMessage = document.createElement('div');
-        this.classListAdd(this.spinnerMessage, 'pf-spinner-message');
+        this.classListAdd(this.spinnerMessage, styles.message);
         this.element.appendChild(this.spinnerMessage);
 
         // Register events.
@@ -22,20 +23,20 @@ class Spinner extends BaseElement {
         this.on('playerPause', () => this.hideSpinner());
         this.on('itemUnloaded', () => this.hideSpinner());
         this.on('playerPlay', () => this.hideSpinner());
-        this.on('showLoading', (e) => this.showSpinner(e));
+        this.on('showLoading', e => this.showSpinner(e));
         this.on('hideLoading', () => this.hideSpinner());
     }
 
     showSpinner(e) {
-        this.classListRemove(this.element, 'hidden');
-        this.classListRemove(this.spinner, 'hidden');
+        this.classListRemove(this.element, styles.hidden);
+        this.classListRemove(this.spinner, styles.hidden);
 
         if (e && e.message) {
             this.spinnerMessage.innerHTML = e.message;
-            this.classListRemove(this.spinnerMessage, 'hidden');
+            this.classListRemove(this.spinnerMessage, styles.hidden);
         } else if (e && e.code) {
             this.spinnerMessage.innerHTML = this.meister.Localization.get(e.code);
-            this.classListRemove(this.spinnerMessage, 'hidden');
+            this.classListRemove(this.spinnerMessage, styles.hidden);
         }
     }
 
@@ -45,9 +46,9 @@ class Spinner extends BaseElement {
             return;
         }
 
-        this.classListAdd(this.element, 'hidden');
-        this.classListAdd(this.spinner, 'hidden');
-        this.classListAdd(this.spinnerMessage, 'hidden');
+        this.classListAdd(this.element, styles.hidden);
+        this.classListAdd(this.spinner, styles.hidden);
+        this.classListAdd(this.spinnerMessage, styles.hidden);
     }
 }
 

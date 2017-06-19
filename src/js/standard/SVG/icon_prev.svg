@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_prev</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon_prev" fill="#FFFFFF">
+            <path d="M8.42024541,11.3085619 C7.85666375,11.6897833 7.86318212,12.3122745 8.42024541,12.6890866 L18.9795451,19.8316732 C19.5431268,20.2128946 20,19.9252466 20,19.1843471 L20,4.81330147 C20,4.07457175 19.5366084,3.78916316 18.9795451,4.16597534 L8.42024541,11.3085619 Z M7,5.00087166 C7,4.4481055 6.55733967,4 6.00104344,4 L4.99895656,4 C4.44724809,4 4,4.44463086 4,5.00087166 L4,18.9991283 C4,19.5518945 4.44266033,20 4.99895656,20 L6.00104344,20 C6.55275191,20 7,19.5553691 7,18.9991283 L7,5.00087166 Z" id="prev"></path>
+        </g>
+    </g>
+</svg>

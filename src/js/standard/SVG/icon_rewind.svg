@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_rewind</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon_rewind" fill="#FFFFFF">
+            <path d="M1.02045486,4.16597534 C0.463391577,3.78916316 0,4.07457175 0,4.81330147 L0,19.1843471 C0,19.9252466 0.456873205,20.2128946 1.02045486,19.8316732 L11.5797546,12.6890866 C11.8590967,12.5001324 12.0000004,12.2494004 12,11.9982922 L12,4.81330147 C12,4.07457175 12.4633916,3.78916316 13.0204549,4.16597534 L23.5797546,11.3085619 C24.1433363,11.6897833 24.1368179,12.3122745 23.5797546,12.6890866 L13.0204549,19.8316732 C12.4568732,20.2128946 12,19.9252466 12,19.1843471 L12,11.9982922 C11.9999996,11.748641 11.8607255,11.498618 11.5797546,11.3085619 L1.02045486,4.16597534 Z" id="rewind" transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) "></path>
+        </g>
+    </g>
+</svg>
