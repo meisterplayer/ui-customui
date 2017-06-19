@@ -1,5 +1,6 @@
-import BaseElement from './BaseElement';
-import SeekbarPreview from './SeekBarPreview';
+import BaseElement from '../BaseElement';
+import SeekbarPreview from '../SeekBarPreview';
+import styles from './styles.scss';
 
 function updateBar(element, percentage) {
     element.style.webkitTransform = `scaleX(${percentage})`; //eslint-disable-line
@@ -9,7 +10,6 @@ function updateBar(element, percentage) {
 class SeekBar extends BaseElement {
     constructor(meister) {
         super(meister);
-
         this.isDragging = false;
 
         this.loadedMetadata = false;
@@ -17,59 +17,65 @@ class SeekBar extends BaseElement {
         this.mousedownX = 0;
         this.pagedownX = 0;
 
+        // wrapper
         this.element = document.createElement('div');
-        this.classListAdd(this.element, 'pf-seek-bar-wrapper');
+        this.classListAdd(this.element, styles.wrapper);
+
+        // inner
+        this.innerElement = document.createElement('div');
+        this.classListAdd(this.innerElement, styles.inner);
+        this.element.appendChild(this.innerElement);
 
         this.seekBarPadding = document.createElement('div');
-        this.classListAdd(this.seekBarPadding, 'pf-seek-bar-padding');
-        this.element.appendChild(this.seekBarPadding);
+        this.classListAdd(this.seekBarPadding, styles.padding);
+        this.innerElement.appendChild(this.seekBarPadding);
 
         this.seekBarDuration = document.createElement('div');
-        this.classListAdd(this.seekBarDuration, 'pf-seek-bar', 'duration');
-        this.element.appendChild(this.seekBarDuration);
+        this.classListAdd(this.seekBarDuration, styles.seekBar, styles.duration);
+        this.innerElement.appendChild(this.seekBarDuration);
 
         this.seekBarBuffered = document.createElement('div');
-        this.classListAdd(this.seekBarBuffered, 'pf-seek-bar', 'buffered');
-        this.element.appendChild(this.seekBarBuffered);
+        this.classListAdd(this.seekBarBuffered, styles.seekBar, styles.buffered);
+        this.innerElement.appendChild(this.seekBarBuffered);
         this.seekBarBuffered.style.transform = 'scaleX(0)';
 
         this.seekBarFill = document.createElement('div');
-        this.classListAdd(this.seekBarFill, 'pf-seek-bar', 'fill');
-        this.element.appendChild(this.seekBarFill);
+        this.classListAdd(this.seekBarFill, styles.seekBar, styles.fill);
+        this.innerElement.appendChild(this.seekBarFill);
         this.seekBarFill.style.transform = 'scaleX(0)';
 
         this.seekBarHighlight = document.createElement('div');
-        this.classListAdd(this.seekBarHighlight, 'pf-seek-bar', 'highlight');
-        this.element.appendChild(this.seekBarHighlight);
+        this.classListAdd(this.seekBarHighlight, styles.seekBar, styles.highlight);
+        this.innerElement.appendChild(this.seekBarHighlight);
         this.seekBarHighlight.style.transform = 'scaleX(0)';
 
         this.seekBarFigure = document.createElement('div');
-        this.classListAdd(this.seekBarFigure, 'pf-seek-bar-figure');
+        this.classListAdd(this.seekBarFigure, styles.seekDot);
         this.seekBarDuration.appendChild(this.seekBarFigure);
         this.seekBarFigure.style.left = '0%';
 
         this.preview = new SeekbarPreview(meister);
         this.seekBarDuration.appendChild(this.preview.getNode());
 
-        this.on('itemTimeInfo', (timeInfo) => this.onItemTimeInfo(timeInfo));
-        this.on('playerTimeUpdate', (e) => this.onTimeUpdate(e));
-        this.on('playerSeek', (e) => this.onPlayerSeek(e));
-        this.on('playerProgress', (e) => this.onPlayerProgress(e));
+        this.on('itemTimeInfo', timeInfo => this.onItemTimeInfo(timeInfo));
+        this.on('playerTimeUpdate', e => this.onTimeUpdate(e));
+        this.on('playerSeek', e => this.onPlayerSeek(e));
+        this.on('playerProgress', e => this.onPlayerProgress(e));
         this.on('playerLoadedMetadata', () => { this.loadedMetadata = true; });
 
         // Ad events.
         this.points = {};
-        this.on('adCuePoints', (info) => this.onAdCuePoints(info));
-        this.on('adEnded', (info) => this.onAdEnded(info));
+        this.on('adCuePoints', info => this.onAdCuePoints(info));
+        this.on('adEnded', info => this.onAdEnded(info));
 
         // Mouse hover events.
-        this.seekBarPadding.addEventListener('mouseover', (e) => this.onMouseOver(e));
-        this.seekBarPadding.addEventListener('mousemove', (e) => this.onMouseMove(e));
-        this.seekBarPadding.addEventListener('mouseout', () => this.onMouseOut());
+        this.element.addEventListener('mouseover', e => this.onMouseOver(e));
+        this.element.addEventListener('mousemove', e => this.onMouseMove(e));
+        this.element.addEventListener('mouseout', () => this.onMouseOut());
 
         // Seeking event listeners.
-        this.seekBarPadding.addEventListener('mousedown', (e) => this.onSeekDown(e));
-        this.seekBarPadding.addEventListener('touchstart', (e) => this.onSeekDown(e));
+        this.element.addEventListener('mousedown', e => this.onSeekDown(e));
+        this.element.addEventListener('touchstart', e => this.onSeekDown(e));
 
         this.onSeekMove = (e) => {
             // Prevent the page from moving while scrubbing
@@ -175,7 +181,7 @@ class SeekBar extends BaseElement {
     onMouseOver(e) {
         if (window.TouchEvent && e instanceof window.TouchEvent) {
             this.pagedownX = e.touches[0].pageX;
-            const rect = e.target.getBoundingClientRect();
+            const rect = this.seekBarPadding.getBoundingClientRect();
             this.mousedownX = this.pagedownX - rect.left;
         } else {
             this.mousedownX = e.offsetX;

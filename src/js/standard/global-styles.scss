@@ -1,0 +1,35 @@
+$color-text: #FFF;
+$color-foreground: $color-text;
+$color-background: rgba(black, .8);
+$color-primary: rgb(25, 195, 221);
+$border-radius: 5px;
+$dot-size: 13px;
+
+:local .uiElement { }
+
+:local .uiElementActive {
+    cursor: pointer;
+    pointer-events: all;
+    color: $color-text;
+}
+
+:local .uiElementInactive {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: $color-text;
+    opacity: .8;
+}
+
+:local .uiElementHidden {
+    display: none;
+    visibility: hidden;
+}
+
+:local .icon { }
+
+:local .svg {
+    display: block;
+    width: 30px;
+    height: 30px;
+    color: $color-text;
+}

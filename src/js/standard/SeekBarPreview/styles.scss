@@ -1,0 +1,46 @@
+@import '../global-styles';
+
+$arrow-width: 6px;
+$arrow-height: 5px;
+
+:local .container {
+    color: $color-foreground;
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    color: white;
+    pointer-events: none;
+
+    &.isHidden {
+        // opacity: 0;
+    }
+
+    .previewTime {
+        position: relative;
+        display: block;
+        padding: 5px;
+        background-color: $color-background;
+        color: $color-foreground;
+        transform: translateY(-16px);
+        opacity: 1;
+        transition: all 150ms ease-in-out;
+        font-size: .8em;
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -#{$arrow-height * 2};
+            transform: translateX(-50%);
+            display: block;
+            border-top: $arrow-height $color-background solid;
+            border-bottom: $arrow-height transparent solid;
+            border-left: $arrow-width transparent solid;
+            border-right: $arrow-width transparent solid;
+        }
+    }
+    &.isHidden .previewTime {
+        transform: translateY(-0);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,40 @@
+@import '../global-styles';
+
+:local .container {
+    text-align: center;
+    display: inline-block;
+}
+
+:local .spinner :local {
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    border: 3px solid $color-text;
+    border-bottom-color: transparent;
+    background-color: rgba(black, .4);
+    animation: spinSpinner 1s linear forwards infinite;
+    box-shadow: 0 0 0 3px rgba(black, .4);
+}
+
+:local .message {
+    font-size: 1em;
+    margin-top: .4em;
+    padding: .4em 1em;
+    color: $color-text;
+    background-color: rgba(black, .4);
+    border-radius: $border-radius;
+}
+
+:local .hidden {
+    display: none;
+}
+
+@keyframes :local(spinSpinner) {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

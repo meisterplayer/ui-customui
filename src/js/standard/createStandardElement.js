@@ -1,9 +1,9 @@
 import CaptionsButton from './CaptionsButton';
 import FullscreenButton from './FullscreenButton';
 import PlayButton from './PlayButton';
-import PlaylistButtons from './PlaylistButtons';
+import { PlaylistPreviousButton, PlaylistNextButton } from './PlaylistButtons';
 import QualityButton from './QualityButton';
-import SeekBar from './SeekBar';
+import SeekBar from './Seekbar';
 import Spinner from './Spinner';
 import StepBackButton from './StepBackButton';
 import StepForwardButton from './StepForwardButton';
@@ -18,8 +18,10 @@ export default function createStandardElement(meister, config, name) {
         return new FullscreenButton(meister, config);
     case 'playbutton':
         return new PlayButton(meister, config);
-    case 'playlistbuttons':
-        return new PlaylistButtons(meister, config);
+    case 'playlistpreviousbutton':
+        return new PlaylistPreviousButton(meister, config);
+    case 'playlistnextbutton':
+        return new PlaylistNextButton(meister, config);
     case 'qualitybutton':
         return new QualityButton(meister, config);
     case 'seekbar':

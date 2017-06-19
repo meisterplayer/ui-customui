@@ -1,4 +1,6 @@
-import BaseElement from './BaseElement';
+import BaseElement from '../BaseElement';
+import styles from './styles.scss';
+import globalStyles from '../global-styles.scss';
 
 const LIVE_THRESHOLD = 35;
 
@@ -7,7 +9,7 @@ class TimeDisplay extends BaseElement {
         super(meister);
 
         this.element = document.createElement('div');
-        this.classListAdd(this.element, 'pf-ui-element', 'pf-ui-element-left', 'pf-time-display');
+        this.classListAdd(this.element, globalStyles.uiElement, styles.container);
         // HACK: dirty microsoft
         if (this.meister.browser.isIE || this.meister.browser.isEdge) {
             this.classListAdd(this.element, 'microsoft-hack');
@@ -15,15 +17,15 @@ class TimeDisplay extends BaseElement {
 
         this.currentTime = document.createElement('span');
         this.currentTime.innerHTML = '0:00';
-        this.classListAdd(this.currentTime, 'time-display-element');
+        this.classListAdd(this.currentTime, styles.currentTime);
 
         this.seperator = document.createElement('span');
         this.seperator.innerHTML = '/';
-        this.classListAdd(this.seperator, 'time-display-element');
+        this.classListAdd(this.seperator, styles.seperator);
 
         this.duration = document.createElement('span');
         this.duration.innerHTML = '0:00';
-        this.classListAdd(this.duration, 'time-display-element');
+        this.classListAdd(this.duration, styles.duration);
         this.duration.addEventListener('click', () => this.meister.trigger('requestGoLive'));
 
         this.element.appendChild(this.currentTime);
@@ -32,9 +34,9 @@ class TimeDisplay extends BaseElement {
 
         this.isLive = false;
 
-        this.on('itemTimeInfo', (timeInfo) => this.onItemTimeInfo(timeInfo));
-        this.on('playerTimeUpdate', (e) => this.onTimeUpdate(e));
-        this.on('playerSeek', (e) => this.onPlayerSeek(e));
+        this.on('itemTimeInfo', timeInfo => this.onItemTimeInfo(timeInfo));
+        this.on('playerTimeUpdate', e => this.onTimeUpdate(e));
+        this.on('playerSeek', e => this.onPlayerSeek(e));
 
         // Ad variables.
         this.adTimer = null;
@@ -43,7 +45,7 @@ class TimeDisplay extends BaseElement {
 
     onItemUnloaded() {
         this.isLive = false;
-        this.classListRemove(this.duration, 'go-live', 'pf-ui-element-active');
+        this.classListRemove(this.duration, 'go-live', globalStyles.uiElementActive);
 
         this.currentTime.innerHTML = '-';
         this.duration.innerHTML = '-';
@@ -73,8 +75,7 @@ class TimeDisplay extends BaseElement {
 
         if (behindLive < LIVE_THRESHOLD) {
             this.currentTime.innerHTML = '-';
-            this.classListRemove(this.duration, 'go-live', 'pf-ui-element-active');
-            return;
+            this.classListRemove(this.duration, 'go-live', globalStyles.uiElementActive);
         }
     }
 
@@ -89,7 +90,7 @@ class TimeDisplay extends BaseElement {
         const behindLive = e.duration - e.currentTime;
         if (behindLive < LIVE_THRESHOLD) {
             this.currentTime.innerHTML = '-';
-            this.classListRemove(this.duration, 'go-live', 'pf-ui-element-active');
+            this.classListRemove(this.duration, 'go-live', globalStyles.uiElementActive);
             return;
         }
 
@@ -98,7 +99,7 @@ class TimeDisplay extends BaseElement {
         this.currentTime.innerHTML = `-${timeString}`;
 
         // Activate the go live button.
-        this.classListAdd(this.duration, 'go-live', 'pf-ui-element-active');
+        this.classListAdd(this.duration, 'go-live', globalStyles.uiElementActive);
     }
 
     createTimeString(time) {
