@@ -64,7 +64,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -206,7 +206,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_event_node_functions__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_standard_node_functions__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__package_json__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__package_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__package_json__);
 /** @module CustomUi */
+
 
 
 
@@ -253,6 +256,10 @@ class CustomUi extends Meister.Ui {
      */
     static get pluginName() {
         return 'CustomUi';
+    }
+
+    static get pluginVersion() {
+        return __WEBPACK_IMPORTED_MODULE_2__package_json___default.a.version;
     }
 
     /**
@@ -2076,6 +2083,34 @@ function createStandardElement(meister, config, name) {
 
 /***/ }),
 /* 23 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	"name": "@meisterplayer/plugin-customui",
+	"version": "5.1.0",
+	"description": "Build a custom ui from scratch or use preconfigured elements.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"meister",
+		"plugin",
+		"ui",
+		"custom"
+	],
+	"author": "Triple",
+	"license": "Apache-2.0",
+	"devDependencies": {
+		"gulp": "^3.9.1",
+		"meister-gulp-webpack-tasks": "^1.0.7",
+		"meister-js-dev": "^3.1.0",
+		"yargs": "^8.0.1"
+	}
+};
+
+/***/ }),
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(3);
