@@ -1,6 +1,7 @@
 /** @module CustomUi */
 import { extractEventNodes, createRegisterDataEvents } from './lib/event-node-functions';
 import { extractStandardNodes, createLoadStandardElement } from './lib/standard-node-functions';
+import packageJson from '../../package.json';
 
 /**
  * Plugin that can be used to supply your own HTMLElements that make up the ui. By specifying
@@ -45,6 +46,10 @@ class CustomUi extends Meister.Ui {
      */
     static get pluginName() {
         return 'CustomUi';
+    }
+
+    static get pluginVersion() {
+        return packageJson.version;
     }
 
     /**
