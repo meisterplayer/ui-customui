@@ -1,15 +1,15 @@
-# Custom Ui #
+# HTML Ui #
 
 A plugin for the Meister.js video player that allows you to create your own ui, optionally making use of preconfigured elements.
 
 ### How do I get set up? ###
 
-When initializing the player add `CustomUi` with it's own configuration to the configuration object.
+When initializing the player add `HtmlUi` with it's own configuration to the configuration object.
 If you do not configure the plugin or leave the ui-configuration property empty (or the queryselector does not resolve to a node) the plugin will revert to using the default userinterface.
 
 ```JavaScript
 var player = new Meister("#querySelector", {
-    CustomUi: {
+    HtmlUi: {
         ui: document.querySelector('#custom-ui-element'), // (optional) Root element of your custom Ui,  url to a template or string containing HTML
         registeredCallback: function (registeredEvent) { // Callback to call when events are registered on a custom element.
             console.log('Registered events to a custom element: ', registeredEvent);
@@ -27,12 +27,12 @@ player.on('ui:custom-element:mouseover', function (e) {
 
 ##### Registering Elements #####
 
-By passing a function to the `registeredCallback` config object you can further customize your elements. This is called with a `CustomUiElementRegisteredEvent` for every element that has the `"data-mstr-events"` attribute. This allows you to bind Meister events back to the element:
+By passing a function to the `registeredCallback` config object you can further customize your elements. This is called with a `HtmlUiElementRegisteredEvent` for every element that has the `"data-mstr-events"` attribute. This allows you to bind Meister events back to the element:
 
 
 ```JavaScript
 var player = new Meister("#querySelector", {
-    CustomUi: {
+    HtmlUi: {
         ui: document.querySelector('#custom-ui-element'),
         registeredCallback: function (registeredEvent) {
             var meisterInstance = registeredEvent.meister
@@ -49,7 +49,7 @@ var player = new Meister("#querySelector", {
 });
 ```
 
-For a list of all properties of the `CustomUiElementRegisteredEvent` see the Configuration section of this document.
+For a list of all properties of the `HtmlUiElementRegisteredEvent` see the Configuration section of this document.
 
 #### Standard Components ####
 
@@ -91,7 +91,7 @@ Options are required unless marked as [optional].
 * [optional] **remoteTemplateReady** :: *Function*  
     When using a remote template url this callback is called when the template has been downloaded, parsed, and was injected into the DOM.
 * [optional] **registeredCallback** :: *Function*  
-    This callback is called when all events were registered to an element with the `"data-mstr-events"` attribute. It is called with a `CustomUiElementRegisteredEvent` as the single argument with the following properties:
+    This callback is called when all events were registered to an element with the `"data-mstr-events"` attribute. It is called with a `HtmlUiElementRegisteredEvent` as the single argument with the following properties:
     - **element** :: *HTMLElement*  
         Reference to the HTMLElement on which the events were registered.
     - **events** :: *String[]*  
@@ -126,7 +126,7 @@ When using a remote template there are a couple of caveats to take into consider
     var playerInitialized = false;
 
     var player = new Meister("#querySelector", {
-        CustomUi: {
+        HtmlUi: {
             ui: 'templates/custom-template.html',
             remoteTemplateReady: function () {
                 // If the player construction finished go ahead and load the player.
@@ -181,7 +181,7 @@ When using a remote template there are a couple of caveats to take into consider
 
 #### Option: Custom Events ####
 
-Optionally you can use the eventbus of Meisterplayer to register and handle UI-events from the customUI. An advantage of using Meister's eventbus is the reference to the meister-instance which triggered the UI-event, you would have to maintain a registry of instances and some way to determine the instance that fired an UI-event if you'd chosen to implement your own event-handling.
+Optionally you can use the eventbus of Meisterplayer to register and handle UI-events from the HtmlUi. An advantage of using Meister's eventbus is the reference to the meister-instance which triggered the UI-event, you would have to maintain a registry of instances and some way to determine the instance that fired an UI-event if you'd chosen to implement your own event-handling.
 
 You can register events to your elements by setting the `data-mstr-events` attribute on the element, with a comma seperated list of eventnames as the value. Should one of the specified events trigger on the DOM node this will be emitted through the Meister instance's event bus with the following format: `"ui:[<element-id>]:<eventtype>"`.
 
@@ -213,7 +213,7 @@ player.on('ui:custom-element-1:mouseover', function(customEvent) {
 });
 ```
 
-All custom ui events callbacks are called with a `CustomUiEvent` as the single argument. In this event the following properties are available:
+All custom ui events callbacks are called with a `HtmlUiEvent` as the single argument. In this event the following properties are available:
 - **element** :: *HTMLElement*  
     Reference to the DOM node on which the event was registered.
 - **event** :: *Event*  

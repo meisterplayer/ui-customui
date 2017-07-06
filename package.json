@@ -1,7 +1,7 @@
 {
-  "name": "@meisterplayer/plugin-customui",
-  "version": "5.1.0",
-  "description": "Build a custom ui from scratch or use preconfigured elements.",
+  "name": "@meisterplayer/plugin-htmlui",
+  "version": "5.0.0",
+  "description": "HTML based userinterface with preconfigured elements. Can be used to create your own userinterface",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
