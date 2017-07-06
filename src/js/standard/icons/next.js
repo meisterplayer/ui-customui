@@ -1,0 +1,11 @@
+import globalStyles from '../global-styles.scss';
+import createClassNameString from '../../lib/createClassNameString';
+
+
+const nextIcon = (cssClass) => `
+<svg class="${createClassNameString(globalStyles.svg, cssClass)}" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M15.5797546,11.3085619 C16.1433363,11.6897833 16.1368179,12.3122745 15.5797546,12.6890866 L5.02045486,19.8316732 C4.4568732,20.2128946 4,19.9252466 4,19.1843471 L4,4.81330147 C4,4.07457175 4.46339158,3.78916316 5.02045486,4.16597534 L15.5797546,11.3085619 Z M17,5.00087166 C17,4.4481055 17.4426603,4 17.9989566,4 L19.0010434,4 C19.5527519,4 20,4.44463086 20,5.00087166 L20,18.9991283 C20,19.5518945 19.5573397,20 19.0010434,20 L17.9989566,20 C17.4472481,20 17,19.5553691 17,18.9991283 L17,5.00087166 Z"></path>
+</svg>
+`;
+
+export default nextIcon;
