@@ -2,6 +2,7 @@
 import { extractEventNodes, createRegisterDataEvents } from './lib/event-node-functions';
 import { extractStandardNodes, createLoadStandardElement } from './lib/standard-node-functions';
 import packageJson from '../../package.json';
+import defaultTheme from './defaultTheme';
 
 /**
  * Plugin that can be used to supply your own HTMLElements that make up the ui. By specifying
@@ -19,21 +20,27 @@ class CustomUi extends Meister.Ui {
         super(config, meister);
 
         if (!this.config.ui) {
-            console.error(`${CustomUi.pluginName}: No ui node or url defined, plugin will not load.`);
-            // HACK: This overrides constructor behaviour and makes it not return an instance...
+            // use default, also triggered if the UI element is defined but not found
+            this.insertStringTemplate(defaultTheme());
             return [];
         }
-
         if (this.meister.utils.isDOMNode(this.config.ui)) {
             this.element = this.config.ui;
             this.processTemplate();
-        } else {
+        } else if (this.config.ui.indexOf('http://') > -1 ||
+            this.config.ui.indexOf('https://') > -1) {
             const xhr = new XMLHttpRequest();
             xhr.open('GET', this.config.ui);
             xhr.responseType = 'document';
             xhr.addEventListener('load', this.onTemplateRequestSuccess.bind(this), false);
             xhr.addEventListener('error', this.onTemplateRequestError.bind(this), false);
             xhr.send();
+        } else if (typeof this.config.ui === 'string') {
+            // insert string template configured by user
+            this.insertStringTemplate(this.config.ui);
+        } else {
+            console.warn(`Unable to render a UI template`);
+            return [];
         }
 
         // Consistent return.
@@ -50,6 +57,34 @@ class CustomUi extends Meister.Ui {
 
     static get pluginVersion() {
         return packageJson.version;
+    }
+
+    /**
+     * Returns DOM Node that is inserted in the DOM
+     * @return {DOMNode}
+     */
+    getTemplateWrapper() {
+        const templateElementWrapper = document.createElement('div');
+        templateElementWrapper.style.display = 'none';
+        templateElementWrapper.style.visibility = 'hidden';
+
+        const templateElement = document.createElement('div');
+        templateElementWrapper.appendChild(templateElement);
+
+        document.body.appendChild(templateElementWrapper);
+
+        return templateElement;
+    }
+
+    /**
+     * Inserts and handles a template defined as string
+     * @param {String} template
+     */
+    insertStringTemplate(template) {
+        this.element = this.getTemplateWrapper();
+        this.element.innerHTML = template;
+        this.processTemplate();
+        this.draw();
     }
 
     /**

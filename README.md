@@ -5,11 +5,12 @@ A plugin for the Meister.js video player that allows you to create your own ui, 
 ### How do I get set up? ###
 
 When initializing the player add `CustomUi` with it's own configuration to the configuration object.
+If you do not configure the plugin or leave the ui-configuration property empty (or the queryselector does not resolve to a node) the plugin will revert to using the default userinterface.
 
 ```JavaScript
 var player = new Meister("#querySelector", {
     CustomUi: {
-        ui: document.querySelector('#custom-ui-element'), // Root element of your custom Ui or url to a template.
+        ui: document.querySelector('#custom-ui-element'), // (optional) Root element of your custom Ui,  url to a template or string containing HTML
         registeredCallback: function (registeredEvent) { // Callback to call when events are registered on a custom element.
             console.log('Registered events to a custom element: ', registeredEvent);
         },
