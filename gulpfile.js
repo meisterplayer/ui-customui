@@ -4,7 +4,7 @@ const { changelogModule, cleanModule, jsdocModule, versioningModule } = require(
 const { createBuildTask, createConfig, createCompiler } = require('meister-gulp-webpack-tasks');
 
 // Build tasks.
-const MODULE_NAME = 'CustomUi';
+const MODULE_NAME = 'HtmlUi';
 
 gulp.task('build', (done) => {
     const bundleConfig = createConfig('./index.js', `build/${MODULE_NAME}.js`, false);

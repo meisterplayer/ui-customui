@@ -1,3 +1,3 @@
-import CustomUi from './src/js/CustomUi';
+import HtmlUi from './src/js/HtmlUi';
 
-export default CustomUi;
+export default HtmlUi;

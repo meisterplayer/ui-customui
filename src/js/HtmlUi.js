@@ -1,4 +1,4 @@
-/** @module CustomUi */
+/** @module HtmlUi */
 import { extractEventNodes, createRegisterDataEvents } from './lib/event-node-functions';
 import { extractStandardNodes, createLoadStandardElement } from './lib/standard-node-functions';
 import packageJson from '../../package.json';
@@ -7,14 +7,14 @@ import defaultTheme from './defaultTheme';
 /**
  * Plugin that can be used to supply your own HTMLElements that make up the ui. By specifying
  * data-attributes you can customize the functionality of the ui.
- * @memberof module:CustomUi
+ * @memberof module:HtmlUi
  */
-class CustomUi extends Meister.Ui {
+class HtmlUi extends Meister.Ui {
     /**
-     * Create a new CustomUi.
-     * @memberof module:CustomUi
+     * Create a new HtmlUi.
+     * @memberof module:HtmlUi
      * @param {Object} config Configuration for the plugin.
-     * @param {Meister} meister Meister instance which is instantiating a new CustomUi.
+     * @param {Meister} meister Meister instance which is instantiating a new HtmlUi.
      */
     constructor(config, meister) {
         super(config, meister);
@@ -52,7 +52,7 @@ class CustomUi extends Meister.Ui {
      * @return {String}
      */
     static get pluginName() {
-        return 'CustomUi';
+        return 'HtmlUi';
     }
 
     static get pluginVersion() {
@@ -110,7 +110,7 @@ class CustomUi extends Meister.Ui {
      * @param {ProgressEvent} loadEvent Event object from the XMLHttpRequest.
      */
     onTemplateRequestError(loadEvent) {
-        console.error(`${CustomUi.pluginName}: error loading the template. `, loadEvent.target);
+        console.error(`${HtmlUi.pluginName}: error loading the template. `, loadEvent.target);
     }
 
     /**
@@ -131,5 +131,5 @@ class CustomUi extends Meister.Ui {
     }
 }
 
-Meister.registerPlugin(CustomUi.pluginName, CustomUi);
-export default CustomUi;
+Meister.registerPlugin(HtmlUi.pluginName, HtmlUi);
+export default HtmlUi;
