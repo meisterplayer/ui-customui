@@ -3,7 +3,7 @@ import FullscreenButton from './FullscreenButton';
 import PlayButton from './PlayButton';
 import { PlaylistPreviousButton, PlaylistNextButton } from './PlaylistButtons';
 import QualityButton from './QualityButton';
-import SeekBar from './Seekbar';
+import SeekBar from './SeekBar';
 import Spinner from './Spinner';
 import StepBackButton from './StepBackButton';
 import StepForwardButton from './StepForwardButton';
