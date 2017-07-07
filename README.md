@@ -10,7 +10,7 @@ If you do not configure the plugin or leave the ui-configuration property empty 
 ```JavaScript
 var player = new Meister("#querySelector", {
     HtmlUi: {
-        ui: document.querySelector('#custom-ui-element'), // (optional) Root element of your custom Ui,  url to a template or string containing HTML
+        ui: document.querySelector('#custom-ui-element'), // (optional) Root element of your custom Ui or string containing HTML
         registeredCallback: function (registeredEvent) { // Callback to call when events are registered on a custom element.
             console.log('Registered events to a custom element: ', registeredEvent);
         },
@@ -104,80 +104,8 @@ Options are required unless marked as [optional].
     Settings for the preconfigured elements. These mirror the options available for the StandardUi plugin for now.
     * [optional] **disablePauseWithLive** :: *Boolean*  
         Flag indicating whether the viewer can pause live content or not. Defaults to false.
-
-
-### Remote Template ##
-
-When using a remote template there are a couple of caveats to take into consideration. The current architecture of the Meister player assumes that the ui is built synchronously, which poses problems when fetching a template. In a future version this will be adressed for a smoother experience. For now you can work around this by using a callback to notify you when the template has finished downloading and parsing. Below is an example of how you could structure this. 
-
-#### Example ####
-
-```HTML
-<!-- File: index.html -->
-<div class="container">
-    <div id="querySelector">
-
-    </div>
-</div>
-
-<script>
-    // Due to the async nature of the template request we need to keep track of what finishes first.
-    var uiLoaded = false;
-    var playerInitialized = false;
-
-    var player = new Meister("#querySelector", {
-        HtmlUi: {
-            ui: 'templates/custom-template.html',
-            remoteTemplateReady: function () {
-                // If the player construction finished go ahead and load the player.
-                // If it hasn't, set a flag so the player can load after finishing constructing.
-                if (playerInitialized) {
-                    startPlayer();
-                } else {
-                    uiLoaded = true;
-                }
-            },
-            registeredCallback: function (registeredEvent) {
-                console.log('Registered events to a custom element: ', registeredEvent);
-            },
-            standard: {
-                disablePauseWithLive: true,
-                stepBack: 30,
-                stepForward: 30,
-            }
-        }
-    });
-    
-    playerInitialized = true;
-
-    // If the ui has loaded before the constructor finished load the player.
-    if (uiLoaded) {
-        startPlayer();
-    }
-
-    // Helper funtion to start the player.
-    function startPlayer() {
-        player.setItem({ src: 'SRC_URL', type: 'mp4' });
-        player.load();
-    }
-</script>
-<!-- End of file: index.html -->
-
-<!-- File: templates/custom-template.html -->
-<div id="custom-ui-element" data-mstr-events="click" class="custom-wrapper-class">
-    <div id="custom-mouseover" data-mstr-events="mouseover" class="custom-inner-class">
-        <div id="custom-mouseevents" data-mstr-events="mousedown, mousemove, mouseup" class="custom-button-class">
-
-        </div>
-        <span data-mstr-standard="stepbackbutton"></span>
-        <span data-mstr-standard="playbutton"></span>
-        <span data-mstr-standard="stepforwardbutton"></span>
-    </div>
-</div>
-<!-- End of file: templates/custom-template.html -->
-```
-
-
+* [optional] **hiddenClassName** :: **String** 
+    (css)Class name used to hide controls. Defaults to `.mstr-hide-controls`.
 
 #### Option: Custom Events ####
 
@@ -224,3 +152,23 @@ All custom ui events callbacks are called with a `HtmlUiEvent` as the single arg
     The type of event, that was emitted from the DOM. Examples include `"mouseover"` or `"click"`. This is always the same as the `<eventtype>` part of the eventName.
 - **meister** :: *Meister*  
     Reference to the meister instance the event was emitted on.
+
+
+#### Option: Directives ####
+
+Directives are meant for more complex (but functionally 'standard') events. 
+Currently the events that trigger hiding the UI have been refactored into an autoHideShow Directive. If you create your own template and want the controls to auto-hide (and show when the mouse enters the player) you should put `data-mstr-directive="autoHideShow"` on the node you want the events triggered upon. 
+
+In the end using directives will provide you with a very flexible way to handle stuff in the UI, mostly events, but you can implement your own methods. A directive will be able to access the meister-instance and the HtmlUI-configuration. 
+
+##### autoHideShow #####
+
+The default template handles auto-hiding using the autoHideShow-directive. It triggers custom Meister events;
+
+`uiEvent:hideControls`
+`uiEvent:showControls`
+`uiEvent:hideCursor`
+`uiEvent:showCursor`
+
+The HtmlUi plugin handles those events by adding `config.hiddenClassName` to the controls; which hides the UI with css. If no `config.hiddenClassName` is set it defaults to `.mstr-hide-controls`.
+If you have your own template and use the autoHideShow-directive and do not want to use `mstr-hide-controls` you should set `config.hiddenClassName` to something of your liking. 

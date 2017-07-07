@@ -1,11 +1,17 @@
-/**
- * Directive used to autohide the UI.
- */
+/** @module AutoHideShowControls
+* Directive used to autohide the UI. Can be instantiated by setting data-mstr-directive="autoHideShow" on an element.
+*/
 
 let TIME_TILL_FADE = 3000;
 
 class AutoHideShowControls {
 
+    /**
+     * Create a new AutoHideShowControls.
+     * @memberof module:HtmlUi
+     * @param {Meister} meister Meister instance which is instantiating a new HtmlUi.
+     * @param {Object} config Configuration of the HtmlUI Plugin.
+     */
     constructor(meister, config) {
         this.config = config; // this is htmlUI config!
         this.meister = meister;
@@ -28,7 +34,11 @@ class AutoHideShowControls {
         this.toggleFixedControls(this.fixedControls);
     }
 
-
+    /**
+     * Set's the events on the meister-container
+     * @param {Boolean} on whether the UI should autohide, can be set by the config-option `fixedControls`
+     * @return {null}
+     */
     toggleFixedControls(on) {
         if (on) {
             this.meister.container.removeEventListener('mousedown', this.onMouseDown);
@@ -54,6 +64,10 @@ class AutoHideShowControls {
         }
     }
 
+    /**
+     * Callback for hideCursor-Event, triggers a Meister-event
+     * @return {null}
+     */
     hideCursor() {
         if (this.dragging) {
             return;
@@ -61,10 +75,18 @@ class AutoHideShowControls {
         this.meister.trigger('uiEvent:hideCursor', {});
     }
 
+    /**
+     * Callback for showCursor-Event, triggers a Meister-event
+     * @return {null}
+     */
     showCursor() {
         this.meister.trigger('uiEvent:showCursor', {});
     }
 
+    /**
+     * Callback for hideControls-Event, triggers a Meister-event
+     * @return {null}
+     */
     hideControls() {
         if (this.dragging || !this.meister.playing) {
             return;
@@ -72,6 +94,10 @@ class AutoHideShowControls {
         this.meister.trigger('uiEvent:hideControls', {});
     }
 
+    /**
+     * Callback for showControls-Event, triggers a Meister-event
+     * @return {null}
+     */
     showControls() {
         this.meister.trigger('uiEvent:showControls', {});
     }
