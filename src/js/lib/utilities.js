@@ -27,6 +27,6 @@ export function replaceNodeWith(oldNode, newNode) {
  * @param  {String} [value=''] String to be formatted.
  * @return {String}             Formatted value.
  */
-export function formatValue(value = '') {
+export function formatValue(value) {
     return value.trim().toLowerCase();
 }
