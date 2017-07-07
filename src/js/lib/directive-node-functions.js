@@ -1,5 +1,5 @@
 import { MEISTER_DATA_DIRECTIVE_ATTR } from './constants';
-import { extractNodesWithSelector } from './utilities';
+import { extractNodesWithSelector, formatValue } from './utilities';
 import createDirective from '../directives/createDirective';
 
 /**
@@ -26,7 +26,7 @@ export function createAttachDirective(meister, config = {}) {
      * @param  {HTMLElement} domNode Node with data-mstr-standard that should be replaced with a Standard Ui element.
      */
     return function attachDirective(domNode) {
-        const directiveName = domNode.getAttribute(MEISTER_DATA_DIRECTIVE_ATTR);
+        const directiveName = formatValue(domNode.getAttribute(MEISTER_DATA_DIRECTIVE_ATTR));
         createDirective(meister, config, directiveName);
     };
 }
