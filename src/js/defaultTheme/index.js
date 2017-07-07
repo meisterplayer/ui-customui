@@ -1,7 +1,7 @@
 import styles from './styles.scss';
 
 const defaultTheme = () => {
-    return `<div class="mstr-container">
+    return `<div class="mstr-container" data-mstr-directive="autoHideShow">
                 <div class="mstr-centerbar">
                     <span data-mstr-standard="spinner"></span>
                 </div>
@@ -36,5 +36,6 @@ const defaultTheme = () => {
             </div>
         `;
 }
+
 
 export default defaultTheme;
