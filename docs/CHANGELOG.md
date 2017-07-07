@@ -1,3 +1,14 @@
+<a name="5.2.0"></a>
+# [5.2.0](https://github.com/meisterplayer/ui-htmlui/compare/v5.1.0...v5.2.0) (2017-07-07)
+
+
+### Features
+
+* **rename:** Change plugin name to HtmlUi ([f9a8242](https://github.com/meisterplayer/ui-htmlui/commit/f9a8242))
+* **template:** allow template to be configured as HTML-string ([32b115c](https://github.com/meisterplayer/ui-htmlui/commit/32b115c))
+
+
+
 <a name="5.1.0"></a>
 # 5.1.0 (2017-06-27)
 
