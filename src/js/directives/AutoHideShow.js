@@ -42,27 +42,31 @@ class AutoHideShowControls extends ProtoDirective {
      */
     toggleFixedControls(on) {
         if (on) {
-            this.meister.container.removeEventListener('mousedown', this.onMouseDown);
-            this.meister.container.removeEventListener('touchstart', this.onMouseDown);
-
-            this.meister.container.removeEventListener('mousemove', this.onMouseMove);
-            this.meister.container.removeEventListener('touchmove', this.onMouseMove);
-            this.meister.container.removeEventListener('mouseleave', this.onMouseLeave);
-
+            this.removeEventListeners();
             this.showControls();
             this.showCursor();
         } else {
-            this.meister.container.addEventListener('mousedown', this.onMouseDown);
-            this.meister.container.addEventListener('touchstart', this.onMouseDown);
-
-            this.meister.container.addEventListener('mousemove', this.onMouseMove);
-            this.meister.container.addEventListener('touchmove', this.onMouseMove);
-            this.meister.container.addEventListener('mouseleave', this.onMouseLeave);
-
+            this.addEventListeners();
             // Start hide countdown.
             this.mouseTimeout = setTimeout(this.hideCursor.bind(this), TIME_TILL_FADE);
             this.controlsTimeout = setTimeout(this.hideControls.bind(this), TIME_TILL_FADE);
         }
+    }
+
+    removeEventListeners() {
+        this.meister.container.removeEventListener('mousedown', this.onMouseDown);
+        this.meister.container.removeEventListener('touchstart', this.onMouseDown);
+        this.meister.container.removeEventListener('mousemove', this.onMouseMove);
+        this.meister.container.removeEventListener('touchmove', this.onMouseMove);
+        this.meister.container.removeEventListener('mouseleave', this.onMouseLeave);
+    }
+
+    addEventListeners() {
+        this.meister.container.addEventListener('mousedown', this.onMouseDown);
+        this.meister.container.addEventListener('touchstart', this.onMouseDown);
+        this.meister.container.addEventListener('mousemove', this.onMouseMove);
+        this.meister.container.addEventListener('touchmove', this.onMouseMove);
+        this.meister.container.addEventListener('mouseleave', this.onMouseLeave);
     }
 
     /**
@@ -139,7 +143,11 @@ class AutoHideShowControls extends ProtoDirective {
     }
 
     unload() {
-        console.log(this, 'unload');
+        this.removeEventListeners();
+        if (this.mouseTimeout) clearTimeout(this.mouseTimeout);
+        if (this.controlsTimeout) clearTimeout(this.controlsTimeout);
+        window.removeEventListener('mouseup', this.onMouseUp);
+        window.removeEventListener('touchend', this.onMouseUp);
     }
 
 
