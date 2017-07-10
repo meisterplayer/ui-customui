@@ -24,7 +24,7 @@ export function replaceNodeWith(oldNode, newNode) {
 /**
  * Removes trailing/leading whitespace from a value and makes it lowercase.
  * @memberof module:CustomUi
- * @param  {String} [value=''] String to be formatted.
+ * @param  {String} [value] String to be formatted.
  * @return {String}             Formatted value.
  */
 export function formatValue(value) {

@@ -27,6 +27,6 @@ export function createAttachDirective(meister, config = {}) {
      */
     return function attachDirective(domNode) {
         const directiveName = formatValue(domNode.getAttribute(MEISTER_DATA_DIRECTIVE_ATTR));
-        createDirective(meister, config, directiveName);
+        return createDirective(meister, config, directiveName);
     };
 }

@@ -21,6 +21,7 @@ class HtmlUi extends Meister.Ui {
     constructor(config, meister) {
         super(config, meister);
         this.hiddenClassName = this.config.hiddenClassName || 'mstr-hide-controls';
+        this.directives = [];
         if (!this.config.ui) {
             // use default, also triggered if the UI element is defined but not found
             this.insertStringTemplate(defaultTheme());
@@ -87,8 +88,10 @@ class HtmlUi extends Meister.Ui {
     processTemplate() {
         extractStandardNodes(this.element).forEach(createLoadStandardElement(this.meister, this.config.standard));
         extractEventNodes(this.element).forEach(createRegisterDataEvents(this.meister, this.config.registeredCallback));
-        extractDirectiveNodes(this.element).forEach(createAttachDirective(this.meister, this.config));
-
+        extractDirectiveNodes(this.element).forEach((element) => {
+            const attachDirective = createAttachDirective(this.meister, this.config);
+            this.directives.push(attachDirective(element));
+        });
         // set events
         this.meister.on('uiEvent:hideControls', this.hideControls.bind(this));
         this.meister.on('uiEvent:showControls', this.showControls.bind(this));
@@ -122,6 +125,12 @@ class HtmlUi extends Meister.Ui {
         this.meister.container.style.cursor = 'auto';
     }
 
+    unload() {
+        super.unload();
+        this.directives.forEach((directive) => {
+            directive.unload();
+        });
+    }
 
 }
 

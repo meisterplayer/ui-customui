@@ -1,10 +1,12 @@
+import ProtoDirective from './ProtoDirective';
+
 /** @module AutoHideShowControls
 * Directive used to autohide the UI. Can be instantiated by setting data-mstr-directive="autoHideShow" on an element.
 */
 
 let TIME_TILL_FADE = 3000;
 
-class AutoHideShowControls {
+class AutoHideShowControls extends ProtoDirective {
 
     /**
      * Create a new AutoHideShowControls.
@@ -13,8 +15,7 @@ class AutoHideShowControls {
      * @param {Object} config Configuration of the HtmlUI Plugin.
      */
     constructor(meister, config) {
-        this.config = config; // this is htmlUI config!
-        this.meister = meister;
+        super(meister, config);
 
         if (Number.isFinite(this.config.timeToFade)) {
             TIME_TILL_FADE = this.config.timeToFade * 1000;
@@ -137,11 +138,15 @@ class AutoHideShowControls {
         this.showCursor();
     }
 
+    unload() {
+        console.log(this, 'unload');
+    }
+
 
 }
 
 const autoHideShow = (meister, config) => {
-    new AutoHideShowControls(meister, config);
+    return new AutoHideShowControls(meister, config);
 };
 
 export default autoHideShow;

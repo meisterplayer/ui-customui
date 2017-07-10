@@ -1,9 +1,9 @@
-import autoHideShow from './autoHideShow';
+import AutoHideShow from './AutoHideShow';
 
-export default function createStandardElement(meister, config, name) {
+export default function createDirective(meister, config, name) {
     switch (name) {
     case 'autohideshow':
-        return autoHideShow(meister, config);
+        return AutoHideShow(meister, config);
     default:
         return null;
     }
