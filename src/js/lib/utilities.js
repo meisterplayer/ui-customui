@@ -20,3 +20,13 @@ export function replaceNodeWith(oldNode, newNode) {
 
     return oldNode.parentNode.replaceChild(newNode, oldNode);
 }
+
+/**
+ * Removes trailing/leading whitespace from a value and makes it lowercase.
+ * @memberof module:CustomUi
+ * @param  {String} [value] String to be formatted.
+ * @return {String}             Formatted value.
+ */
+export function formatValue(value) {
+    return value.trim().toLowerCase();
+}

@@ -45,6 +45,10 @@
 
 }
 
+.mstr-hide-controls {
+    animation: hide-bars-animation 0.4s forwards;
+}
+
 .pf-ui-element-hidden {
     visibility: hidden !important;
     width: 0px !important;
@@ -109,4 +113,39 @@
 
 .mstr-item--fill {
     width: 100%;
+}
+
+
+@keyframes show-bars-animation {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+
+    1% {
+        width: 100%;
+        opacity: 0.01;
+    }
+
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes hide-bars-animation {
+    0% {
+        width: 100%;
+        opacity: 1;
+    }
+
+    99% {
+        width: 100%;
+        opacity: 0.01;
+    }
+
+    100% {
+        width: 0;
+        opacity: 0;
+    }
 }
