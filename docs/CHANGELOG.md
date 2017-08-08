@@ -1,3 +1,14 @@
+<a name="5.3.1"></a>
+## [5.3.1](https://github.com/meisterplayer/ui-htmlui/compare/v5.3.0...v5.3.1) (2017-08-08)
+
+
+### Bug Fixes
+
+* **layout:** Remove redundant wrapper div ([9ee0740](https://github.com/meisterplayer/ui-htmlui/commit/9ee0740))
+* **naming:** Rename standard Seekbar to SeekBar ([07407a1](https://github.com/meisterplayer/ui-htmlui/commit/07407a1))
+
+
+
 <a name="5.3.0"></a>
 # [5.3.0](https://github.com/meisterplayer/ui-htmlui/compare/v5.2.0...v5.3.0) (2017-07-24)
 
