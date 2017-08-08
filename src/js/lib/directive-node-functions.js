@@ -9,7 +9,13 @@ import createDirective from '../directives/createDirective';
  * @return {HTMLElement[]}        Array with nodes that have the meister standard data property.
  */
 export function extractDirectiveNodes(rootNode) {
-    return extractNodesWithSelector(rootNode, `[${MEISTER_DATA_DIRECTIVE_ATTR}]`);
+    const nodeArray = extractNodesWithSelector(rootNode, `[${MEISTER_DATA_DIRECTIVE_ATTR}]`);
+
+    if (rootNode.getAttribute(MEISTER_DATA_DIRECTIVE_ATTR)) {
+        return nodeArray.concat(rootNode);
+    }
+
+    return nodeArray;
 }
 
 /**

@@ -22,12 +22,10 @@ class HtmlUi extends Meister.Ui {
         super(config, meister);
         this.hiddenClassName = this.config.hiddenClassName || 'mstr-hide-controls';
         this.directives = [];
+
         if (!this.config.ui) {
-            // use default, also triggered if the UI element is defined but not found
             this.insertStringTemplate(defaultTheme());
-            return [];
-        }
-        if (this.meister.utils.isDOMNode(this.config.ui)) {
+        } else if (this.meister.utils.isDOMNode(this.config.ui)) {
             this.element = this.config.ui;
             this.processTemplate();
         } else if (typeof this.config.ui === 'string') {
@@ -76,8 +74,12 @@ class HtmlUi extends Meister.Ui {
      * @param {String} template
      */
     insertStringTemplate(template) {
-        this.element = this.getTemplateWrapper();
-        this.element.innerHTML = template;
+        const wrapper = this.getTemplateWrapper();
+        wrapper.innerHTML = template;
+
+        // Get rid of the wrapping element.
+        this.element = wrapper.firstChild;
+
         this.processTemplate();
         this.draw();
     }
@@ -97,7 +99,6 @@ class HtmlUi extends Meister.Ui {
         this.meister.on('uiEvent:showControls', this.showControls.bind(this));
         this.meister.on('uiEvent:hideCursor', this.hideCursor.bind(this));
         this.meister.on('uiEvent:showCursor', this.showCursor.bind(this));
-
     }
 
     /**
