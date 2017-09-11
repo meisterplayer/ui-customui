@@ -2,7 +2,7 @@
   "name": "@meisterplayer/plugin-htmlui",
   "version": "5.3.1",
   "description": "HTML based userinterface with preconfigured elements. Can be used to create your own userinterface",
-  "main": "index.js",
+  "main": "dist/HtmlUi.js",
   "keywords": [
     "meister",
     "plugin",
