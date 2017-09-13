@@ -24,7 +24,7 @@
     "babel-preset-es2017": "^6.24.1",
     "gulp": "^3.9.1",
     "jest": "^20.0.4",
-    "meister-gulp-webpack-tasks": "^1.0.7",
+    "meister-gulp-webpack-tasks": "^1.0.11",
     "meister-js-dev": "^3.1.0",
     "yargs": "^8.0.1"
   },
