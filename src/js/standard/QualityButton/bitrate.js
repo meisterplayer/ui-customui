@@ -23,3 +23,15 @@ export function selectBitrate(bitrates, index, silent) {
 
     return silent ? null : index;
 }
+
+/**
+ * Checks if a given index exists in the bitrates list.
+ *
+ * @export
+ * @param {Array.<{index: number, bitrate:number, option:HTMLElement}>} bitrates
+ * @param {number} index
+ * @returns {boolean}
+ */
+export function doesBitrateIndexExist(bitrates, index) {
+    return !!bitrates.find(bitrate => bitrate.index === index);
+}

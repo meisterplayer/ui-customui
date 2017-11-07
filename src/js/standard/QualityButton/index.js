@@ -3,7 +3,7 @@ import globalStyles from '../global-styles.scss';
 import qualityIcon from '../icons/quality';
 import styles from './styles.scss';
 
-import { prepareBitrateOption, selectBitrate } from './bitrate';
+import { prepareBitrateOption, selectBitrate, doesBitrateIndexExist } from './bitrate';
 import { expandQualityMapping, prepareResolutionMapping, prepareResolutionOption, selectResolution } from './resolution';
 
 const RESOLUTION = 0;
@@ -150,7 +150,17 @@ class QualityButton extends BaseElement {
                 });
             });
         }
-        this.selectOption(info.currentIndex, true);
+
+
+        // parseInt with null will return NaN, just like string with not a numeric value.
+        const savedBitrateIndex = parseInt(localStorage.getItem('meister_bitrateIndex'), 10);
+        const bitrateIndexExists = doesBitrateIndexExist(this.bitrates, savedBitrateIndex);
+
+        if (!Number.isNaN(savedBitrateIndex) && bitrateIndexExists) {
+            this.selectOption(savedBitrateIndex, false);
+        } else {
+            this.selectOption(info.currentIndex, true);
+        }
     }
 
     createOption(optionOpts) {
@@ -175,6 +185,7 @@ class QualityButton extends BaseElement {
     }
 
     selectOption(index, silent = false) {
+        /** @type {number} */
         let bitrateIndex = null;
 
         if (this.qualityMappingMode) {
@@ -187,6 +198,8 @@ class QualityButton extends BaseElement {
             this.meister.trigger('requestBitrate', {
                 bitrateIndex,
             });
+
+            localStorage.setItem('meister_bitrateIndex', bitrateIndex.toString());
         }
     }
 }
