@@ -1,3 +1,13 @@
+<a name="5.3.5"></a>
+## [5.3.5](https://github.com/meisterplayer/ui-htmlui/compare/v5.3.4...v5.3.5) (2017-12-28)
+
+
+### Bug Fixes
+
+* **seekbar:** Fix issue with jumpy seekbar ([60e00ab](https://github.com/meisterplayer/ui-htmlui/commit/60e00ab))
+
+
+
 <a name="5.3.3"></a>
 ## [5.3.3](https://github.com/meisterplayer/ui-htmlui/compare/v5.3.2...v5.3.3) (2017-09-11)
 
