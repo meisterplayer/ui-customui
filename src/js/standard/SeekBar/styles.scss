@@ -31,18 +31,22 @@ $seekbarHeight: 3px;
     transform-origin: left center;
 
     &.duration {
+        pointer-events: none;
         background-color: $white;
     }
 
     &.buffered {
+        pointer-events: none;
         background-color: rgba($white, .2);
     }
 
     &.fill {
+        pointer-events: none;
         background-color: $color-primary;
     }
 
     &.highlight {
+        pointer-events: none;
         background-color: $color-primary;
     }
 }

@@ -16,7 +16,6 @@ class SeekbarPreview extends BaseElement {
         // seekbar preview image
         this.seekBarPreviewImage = document.createElement('img');
         this.classListAdd(this.seekBarPreviewImage, 'pf-seek-bar-preview-image');
-        this.seekBarPreviewImage.src = '';
         this.element.appendChild(this.seekBarPreviewImage);
 
         // seekbar preview time
@@ -77,7 +76,11 @@ class SeekbarPreview extends BaseElement {
         this.element.style.transform = `translate(${pixelsRight}px)`;
 
         let time = (this.modifiedDuration || this.meister.duration) * percentage;
-        this.seekBarPreviewImage.src = this.getImageByTime(time);
+        const image = this.getImageByTime(time);
+
+        if (image) {
+            this.seekBarPreviewImage.src = image;
+        }
 
         if (this.modifiedDuration) {
             time = this.modifiedDuration - time;
