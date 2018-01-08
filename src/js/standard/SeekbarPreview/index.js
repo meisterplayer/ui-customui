@@ -14,15 +14,15 @@ class SeekbarPreview extends BaseElement {
         );
 
         // seekbar preview image
-        this.seekBarPreviewImage = document.createElement('img');
-        this.classListAdd(this.seekBarPreviewImage, 'pf-seek-bar-preview-image');
-        this.element.appendChild(this.seekBarPreviewImage);
+        this.seekbarPreviewImage = document.createElement('img');
+        this.classListAdd(this.seekbarPreviewImage, 'pf-seek-bar-preview-image');
+        this.element.appendChild(this.seekbarPreviewImage);
 
         // seekbar preview time
-        this.seekBarPreviewTime = document.createElement('span');
-        this.seekBarPreviewTime.textContent = '0:00';
-        this.classListAdd(this.seekBarPreviewTime, styles.previewTime);
-        this.element.appendChild(this.seekBarPreviewTime);
+        this.seekbarPreviewTime = document.createElement('span');
+        this.seekbarPreviewTime.textContent = '0:00';
+        this.classListAdd(this.seekbarPreviewTime, styles.previewTime);
+        this.element.appendChild(this.seekbarPreviewTime);
 
         this.images = [];
 
@@ -79,15 +79,15 @@ class SeekbarPreview extends BaseElement {
         const image = this.getImageByTime(time);
 
         if (image) {
-            this.seekBarPreviewImage.src = image;
+            this.seekbarPreviewImage.src = image;
         }
 
         if (this.modifiedDuration) {
             time = this.modifiedDuration - time;
             const timeString = this.meister.utils.timeToHMS(Math.round(time));
-            this.seekBarPreviewTime.textContent = `-${timeString}`;
+            this.seekbarPreviewTime.textContent = `-${timeString}`;
         } else {
-            this.seekBarPreviewTime.textContent = this.meister.utils.timeToHMS(Math.round(time));
+            this.seekbarPreviewTime.textContent = this.meister.utils.timeToHMS(Math.round(time));
         }
     }
 

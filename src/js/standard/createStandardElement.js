@@ -3,7 +3,7 @@ import FullscreenButton from './FullscreenButton';
 import PlayButton from './PlayButton';
 import { PlaylistPreviousButton, PlaylistNextButton } from './PlaylistButtons';
 import QualityButton from './QualityButton';
-import SeekBar from './SeekBar';
+import Seekbar from './Seekbar';
 import Spinner from './Spinner';
 import StepBackButton from './StepBackButton';
 import StepForwardButton from './StepForwardButton';
@@ -25,7 +25,7 @@ export default function createStandardElement(meister, config, name) {
     case 'qualitybutton':
         return new QualityButton(meister, config);
     case 'seekbar':
-        return new SeekBar(meister, config);
+        return new Seekbar(meister, config);
     case 'spinner':
         return new Spinner(meister, config);
     case 'stepbackbutton':

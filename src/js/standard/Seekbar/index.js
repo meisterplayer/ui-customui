@@ -1,5 +1,5 @@
 import BaseElement from '../BaseElement';
-import SeekbarPreview from '../SeekBarPreview';
+import SeekbarPreview from '../SeekbarPreview';
 import styles from './styles.scss';
 
 function updateBar(element, percentage) {
@@ -7,7 +7,7 @@ function updateBar(element, percentage) {
     element.style.transform = `scaleX(${percentage})`; //eslint-disable-line
 }
 
-class SeekBar extends BaseElement {
+class Seekbar extends BaseElement {
     constructor(meister) {
         super(meister);
         this.isDragging = false;
@@ -26,36 +26,36 @@ class SeekBar extends BaseElement {
         this.classListAdd(this.innerElement, styles.inner);
         this.element.appendChild(this.innerElement);
 
-        this.seekBarPadding = document.createElement('div');
-        this.classListAdd(this.seekBarPadding, styles.padding);
-        this.innerElement.appendChild(this.seekBarPadding);
+        this.seekbarPadding = document.createElement('div');
+        this.classListAdd(this.seekbarPadding, styles.padding);
+        this.innerElement.appendChild(this.seekbarPadding);
 
-        this.seekBarDuration = document.createElement('div');
-        this.classListAdd(this.seekBarDuration, styles.seekBar, styles.duration);
-        this.innerElement.appendChild(this.seekBarDuration);
+        this.seekbarDuration = document.createElement('div');
+        this.classListAdd(this.seekbarDuration, styles.seekbar, styles.duration);
+        this.innerElement.appendChild(this.seekbarDuration);
 
-        this.seekBarBuffered = document.createElement('div');
-        this.classListAdd(this.seekBarBuffered, styles.seekBar, styles.buffered);
-        this.innerElement.appendChild(this.seekBarBuffered);
-        this.seekBarBuffered.style.transform = 'scaleX(0)';
+        this.seekbarBuffered = document.createElement('div');
+        this.classListAdd(this.seekbarBuffered, styles.seekbar, styles.buffered);
+        this.innerElement.appendChild(this.seekbarBuffered);
+        this.seekbarBuffered.style.transform = 'scaleX(0)';
 
-        this.seekBarFill = document.createElement('div');
-        this.classListAdd(this.seekBarFill, styles.seekBar, styles.fill);
-        this.innerElement.appendChild(this.seekBarFill);
-        this.seekBarFill.style.transform = 'scaleX(0)';
+        this.seekbarFill = document.createElement('div');
+        this.classListAdd(this.seekbarFill, styles.seekbar, styles.fill);
+        this.innerElement.appendChild(this.seekbarFill);
+        this.seekbarFill.style.transform = 'scaleX(0)';
 
-        this.seekBarHighlight = document.createElement('div');
-        this.classListAdd(this.seekBarHighlight, styles.seekBar, styles.highlight);
-        this.innerElement.appendChild(this.seekBarHighlight);
-        this.seekBarHighlight.style.transform = 'scaleX(0)';
+        this.seekbarHighlight = document.createElement('div');
+        this.classListAdd(this.seekbarHighlight, styles.seekbar, styles.highlight);
+        this.innerElement.appendChild(this.seekbarHighlight);
+        this.seekbarHighlight.style.transform = 'scaleX(0)';
 
-        this.seekBarFigure = document.createElement('div');
-        this.classListAdd(this.seekBarFigure, styles.seekDot);
-        this.seekBarDuration.appendChild(this.seekBarFigure);
-        this.seekBarFigure.style.left = '0%';
+        this.seekbarFigure = document.createElement('div');
+        this.classListAdd(this.seekbarFigure, styles.seekDot);
+        this.seekbarDuration.appendChild(this.seekbarFigure);
+        this.seekbarFigure.style.left = '0%';
 
         this.preview = new SeekbarPreview(meister);
-        this.seekBarDuration.appendChild(this.preview.getNode());
+        this.seekbarDuration.appendChild(this.preview.getNode());
 
         this.on('itemTimeInfo', timeInfo => this.onItemTimeInfo(timeInfo));
         this.on('playerTimeUpdate', e => this.onTimeUpdate(e));
@@ -85,8 +85,8 @@ class SeekBar extends BaseElement {
             const normalizedProgress = this.normalizeEventPosition(e);
 
             if (this.isDragging) {
-                updateBar(this.seekBarFill, normalizedProgress);
-                updateBar(this.seekBarHighlight, normalizedProgress);
+                updateBar(this.seekbarFill, normalizedProgress);
+                updateBar(this.seekbarHighlight, normalizedProgress);
                 this.updateFigure(normalizedProgress);
                 this.preview.update(normalizedProgress);
                 this.updateCurrentTime(normalizedProgress);
@@ -108,7 +108,7 @@ class SeekBar extends BaseElement {
                 // Always hide the preview on mobile.
                 if (window.TouchEvent && e instanceof window.TouchEvent) {
                     this.preview.hide();
-                } else if (e.target !== this.seekBarPadding) {
+                } else if (e.target !== this.seekbarPadding) {
                     this.preview.hide();
                 }
 
@@ -124,10 +124,10 @@ class SeekBar extends BaseElement {
     onItemUnloaded() {
         this.loadedMetadata = false;
 
-        this.seekBarBuffered.style.transform = 'scaleX(0)';
-        this.seekBarHighlight.style.transform = 'scaleX(0)';
-        this.seekBarFill.style.transform = 'scaleX(0)';
-        this.seekBarFigure.style.left = '0%';
+        this.seekbarBuffered.style.transform = 'scaleX(0)';
+        this.seekbarHighlight.style.transform = 'scaleX(0)';
+        this.seekbarFill.style.transform = 'scaleX(0)';
+        this.seekbarFigure.style.left = '0%';
 
         Object.keys(this.points).forEach((adID) => {
             if (this.points[adID] !== null) {
@@ -150,7 +150,7 @@ class SeekBar extends BaseElement {
     onTimeUpdate(e) {
         const normalizedProgress = e.currentTime / e.duration;
 
-        updateBar(this.seekBarFill, normalizedProgress);
+        updateBar(this.seekbarFill, normalizedProgress);
         this.updateFigure(normalizedProgress);
     }
 
@@ -174,14 +174,14 @@ class SeekBar extends BaseElement {
         }
 
         const normalizedProgress = targetTime / duration;
-        updateBar(this.seekBarBuffered, normalizedProgress);
+        updateBar(this.seekbarBuffered, normalizedProgress);
     }
 
     // Mouse hover events.
     onMouseOver(e) {
         if (window.TouchEvent && e instanceof window.TouchEvent) {
             this.pagedownX = e.touches[0].pageX;
-            const rect = this.seekBarPadding.getBoundingClientRect();
+            const rect = this.seekbarPadding.getBoundingClientRect();
             this.mousedownX = this.pagedownX - rect.left;
         } else {
             this.mousedownX = e.offsetX;
@@ -194,13 +194,13 @@ class SeekBar extends BaseElement {
     onMouseMove(e) {
         const normalizedProgress = this.normalizeEventPosition(e);
 
-        updateBar(this.seekBarHighlight, normalizedProgress);
+        updateBar(this.seekbarHighlight, normalizedProgress);
         this.preview.update(normalizedProgress);
     }
 
     onMouseOut() {
         // Reset the highlight bar.
-        updateBar(this.seekBarHighlight, 0);
+        updateBar(this.seekbarHighlight, 0);
 
         if (!this.isDragging) {
             this.preview.hide();
@@ -225,7 +225,7 @@ class SeekBar extends BaseElement {
         // Get the location in the page, hacky for touch events...
         const normalizedProgress = this.normalizeEventPosition(e);
 
-        updateBar(this.seekBarFill, normalizedProgress);
+        updateBar(this.seekbarFill, normalizedProgress);
         this.updateFigure(normalizedProgress);
         this.updateCurrentTime(normalizedProgress);
 
@@ -240,8 +240,8 @@ class SeekBar extends BaseElement {
     onPlayerSeek(e) {
         const normalizedProgress = e.relativePosition;
 
-        updateBar(this.seekBarFill, normalizedProgress);
-        updateBar(this.seekBarHighlight, normalizedProgress);
+        updateBar(this.seekbarFill, normalizedProgress);
+        updateBar(this.seekbarHighlight, normalizedProgress);
         this.updateFigure(normalizedProgress);
     }
 
@@ -269,7 +269,7 @@ class SeekBar extends BaseElement {
             const pointPosition = 100 * normalizedProgress;
             elem.style.left = `${pointPosition}%`;
 
-            self.seekBarDuration.appendChild(elem);
+            self.seekbarDuration.appendChild(elem);
             self.points[`adpoint-${t}`] = elem;
         }
 
@@ -306,7 +306,7 @@ class SeekBar extends BaseElement {
         let position = pageX;
         position = this.mousedownX + (pageX - this.pagedownX);
 
-        let normalizedProgress = position / this.seekBarPadding.offsetWidth;
+        let normalizedProgress = position / this.seekbarPadding.offsetWidth;
 
         // Stay within the boundaries
         if (normalizedProgress > 1.0) {
@@ -320,7 +320,7 @@ class SeekBar extends BaseElement {
 
     updateFigure(percentage) {
         const figureLeftPercentage = 100 * percentage;
-        this.seekBarFigure.style.left = `${figureLeftPercentage}%`;
+        this.seekbarFigure.style.left = `${figureLeftPercentage}%`;
     }
 
     updateCurrentTime(percentage) {
@@ -343,4 +343,4 @@ class SeekBar extends BaseElement {
     }
 }
 
-export default SeekBar;
+export default Seekbar;
