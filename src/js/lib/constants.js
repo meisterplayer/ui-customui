@@ -12,6 +12,14 @@ export const CUSTOM_UI_EVENT_PREFIX = 'ui';
  * @type {String}
  * @default
  */
+export const MEISTER_DATA_ID_ATTR = 'data-mstr-id';
+
+/**
+ * @constant
+ * @memberof module:CustomUi
+ * @type {String}
+ * @default
+ */
 export const MEISTER_DATA_EVENTS_ATTR = 'data-mstr-events';
 
 /**

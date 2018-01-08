@@ -56,7 +56,7 @@ For a list of all properties of the `HtmlUiElementRegisteredEvent` see the Confi
 You can also opt to use custom prebuilt elements by using the `"data-mstr-standard"` attribute with the desired element name as the value. This will **replace** the element on which the attribute is set with the prebuilt element.
 
 ```HTML
-<div id="custom-element-1" data-mstr-events="mouseover" class="custom-wrapper-class">
+<div data-mstr-id="custom-element-1" data-mstr-events="mouseover" class="custom-wrapper-class">
     <div class="seekbar-container">
         <span data-mstr-standard="seekbar"></span>
     </div>
@@ -97,7 +97,7 @@ Options are required unless marked as [optional].
     - **events** :: *String[]*  
         List of eventnames that were registered on the element.
     - **id** :: *String*  
-        The id of the element, should it have one.
+        The `data-mstr-id` of the element, should it have one.
     - **meister**  :: *Meister*  
         The meister instance this element registered the events on.
 * [optional] **standard** :: *Object*  
@@ -111,13 +111,13 @@ Options are required unless marked as [optional].
 
 Optionally you can use the eventbus of Meisterplayer to register and handle UI-events from the HtmlUi. An advantage of using Meister's eventbus is the reference to the meister-instance which triggered the UI-event, you would have to maintain a registry of instances and some way to determine the instance that fired an UI-event if you'd chosen to implement your own event-handling.
 
-You can register events to your elements by setting the `data-mstr-events` attribute on the element, with a comma seperated list of eventnames as the value. Should one of the specified events trigger on the DOM node this will be emitted through the Meister instance's event bus with the following format: `"ui:[<element-id>]:<eventtype>"`.
+You can register events to your elements by setting the `data-mstr-events` attribute on the element, with a comma seperated list of eventnames as the value. Should one of the specified events trigger on the DOM node this will be emitted through the Meister instance's event bus with the following format: `"ui:[<element[data-mstr-id]>]:<eventtype>"`.
 
 For example, take the template below:
 
 ```HTML
-<div id="custom-element-1" data-mstr-events="mouseover" class="custom-wrapper-class">
-    <div id="custom-element-2" data-mstr-events="mousedown, mousemove, mouseup" class="custom-inner-class">
+<div data-mstr-id="custom-element-1" data-mstr-events="mouseover" class="custom-wrapper-class">
+    <div data-mstr-id="custom-element-2" data-mstr-events="mousedown, mousemove, mouseup" class="custom-inner-class">
         <div data-mstr-events="click" class="custom-button-class">
 
         </div>
@@ -131,7 +131,7 @@ As you can see it contains three elements, and all three elements have the `data
 - "ui:custom-element-2:mousedown"
 - "ui:custom-element-2:mousemove"
 - "ui:custom-element-2:mouseup"
-- "ui:click" (Since the innermost `div` does not have an id the event is not namespaced)
+- "ui:click" (Since the innermost `div` does not have an data-mstr-id the event is not namespaced)
 
 You can register callbacks for these handles on the Meister instance: 
 
@@ -147,7 +147,7 @@ All custom ui events callbacks are called with a `HtmlUiEvent` as the single arg
 - **event** :: *Event*  
     The original DOM event.
 - **eventName** :: *String*  
-    The complete event string the callback was registered under. Follows the following format `"ui:[<element-id>]:<eventtype>"`.
+    The complete event string the callback was registered under. Follows the following format `"ui:[<element[data-mstr-id]>]:<eventtype>"`.
 - **eventType** :: *String*  
     The type of event, that was emitted from the DOM. Examples include `"mouseover"` or `"click"`. This is always the same as the `<eventtype>` part of the eventName.
 - **meister** :: *Meister*  

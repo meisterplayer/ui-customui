@@ -1,4 +1,4 @@
-import { CUSTOM_UI_EVENT_PREFIX, MEISTER_DATA_EVENTS_ATTR } from './constants';
+import { CUSTOM_UI_EVENT_PREFIX, MEISTER_DATA_EVENTS_ATTR, MEISTER_DATA_ID_ATTR } from './constants';
 import { extractNodesWithSelector } from './utilities';
 import { CustomUiEvent, CustomUiElementRegisteredEvent } from './event-classes';
 
@@ -60,7 +60,8 @@ export function createRegisterDataEvents(meister, onElementRegistered = () => {}
         const eventsArray = extractEvents(rawAttributes);
         if (eventsArray.length < 1) { return; }
 
-        const domNodeId = domNode.id ? `${domNode.id}:` : '';
+        const rawDomNodeId = domNode.getAttribute(MEISTER_DATA_ID_ATTR);
+        const domNodeId = rawDomNodeId ? `${rawDomNodeId}:` : '';
         const handleName = `${CUSTOM_UI_EVENT_PREFIX}:${domNodeId}`;
 
         eventsArray.forEach((eventName) => {

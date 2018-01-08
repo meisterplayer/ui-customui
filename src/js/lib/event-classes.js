@@ -1,3 +1,4 @@
+import { MEISTER_DATA_ID_ATTR } from './constants';
 /**
  * An event used as a callback arguments in custom ui events proxying DOM events.
  * @typedef {Object} module:CustomUi~CustomUiEvent
@@ -46,6 +47,6 @@ export class CustomUiElementRegisteredEvent {
         this.meister = meister;
         this.element = domNode;
         this.events = events;
-        this.id = domNode.id;
+        this.id = domNode.getAttribute(MEISTER_DATA_ID_ATTR);
     }
 }
