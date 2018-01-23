@@ -1,3 +1,15 @@
+<a name="5.4.0"></a>
+# [5.4.0](https://github.com/meisterplayer/ui-htmlui/compare/v5.3.5...v5.4.0) (2018-01-23)
+
+
+### Features
+
+* **api:** Use the [data-mstr-id] attribute for event handles ([c2c277d](https://github.com/meisterplayer/ui-htmlui/commit/c2c277d)), closes [#8](https://github.com/meisterplayer/ui-htmlui/issues/8) [meisterplayer/meisterplayer#66](https://github.com/meisterplayer/meisterplayer/issues/66)
+* **audio:** Set styles for audio background image ([713456b](https://github.com/meisterplayer/ui-htmlui/commit/713456b))
+* **bitrates:** Remember the chosen bitrate via localStorage ([cc42419](https://github.com/meisterplayer/ui-htmlui/commit/cc42419))
+
+
+
 <a name="5.3.5"></a>
 ## [5.3.5](https://github.com/meisterplayer/ui-htmlui/compare/v5.3.4...v5.3.5) (2017-12-28)
 
