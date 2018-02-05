@@ -1,3 +1,13 @@
+<a name="5.5.0"></a>
+# [5.5.0](https://github.com/meisterplayer/ui-htmlui/compare/v5.4.0...v5.5.0) (2018-02-05)
+
+
+### Features
+
+* **audioImage:** Use correct styling for use of <img> tag ([abaa888](https://github.com/meisterplayer/ui-htmlui/commit/abaa888))
+
+
+
 <a name="5.4.0"></a>
 # [5.4.0](https://github.com/meisterplayer/ui-htmlui/compare/v5.3.5...v5.4.0) (2018-01-23)
 
