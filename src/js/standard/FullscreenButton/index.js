@@ -27,6 +27,13 @@ class FullscreenButton extends BaseElement {
         this.element.addEventListener('click', () => this.toggleFullscreen());
 
         this.on('playerFullscreen', () => this.toggleIcon());
+        this.on('playlistMetadata', this.onPlaylistMetadata.bind(this));
+    }
+
+    onPlaylistMetadata(item) {
+        if (item.mediaType === 'audio') {
+            this.classListAdd(this.element, globalStyles.uiElementInactive);
+        }
     }
 
     toggleIcon() {
