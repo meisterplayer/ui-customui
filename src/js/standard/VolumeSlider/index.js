@@ -32,7 +32,13 @@ class VolumeSlider extends BaseElement {
         this.element.appendChild(this.volumeButton);
 
         this.sliderContainer = document.createElement('div');
-        this.classListAdd(this.sliderContainer, styles.container, styles.isClosed);
+
+        if (this.meister.browser.isiOS) {
+            this.classListAdd(this.sliderContainer, styles.container, styles.isClosed, globalStyles.uiElementHidden);
+        } else {
+            this.classListAdd(this.sliderContainer, styles.container, styles.isClosed);
+        }
+
         this.element.appendChild(this.sliderContainer);
 
         this.sliderInner = document.createElement('div');
