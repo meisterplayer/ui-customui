@@ -33,6 +33,11 @@ export function createAttachDirective(meister, config = {}) {
      */
     return function attachDirective(domNode) {
         const directiveName = formatValue(domNode.getAttribute(MEISTER_DATA_DIRECTIVE_ATTR));
-        return createDirective(meister, config, directiveName);
+
+        // Directives can be comma seperated so you can attach multiple directives to an element.
+        const directiveNames = directiveName.split(',');
+        const directives = directiveNames.map(singleDirectiveName => createDirective(meister, config, singleDirectiveName, domNode));
+
+        return directives;
     };
 }

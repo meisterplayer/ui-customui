@@ -92,7 +92,8 @@ class HtmlUi extends Meister.Ui {
         extractEventNodes(this.element).forEach(createRegisterDataEvents(this.meister, this.config.registeredCallback));
         extractDirectiveNodes(this.element).forEach((element) => {
             const attachDirective = createAttachDirective(this.meister, this.config);
-            this.directives.push(attachDirective(element));
+
+            this.directives.push(...attachDirective(element));
         });
         // set events
         this.meister.on('uiEvent:hideControls', this.hideControls.bind(this));
