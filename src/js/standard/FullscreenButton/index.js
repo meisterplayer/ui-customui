@@ -15,7 +15,7 @@ class FullscreenButton extends BaseElement {
 
         this.classListAdd(this.element, globalStyles.uiElement);
         if (this.meister.config.audioOnly) {
-            this.classListAdd(this.element, globalStyles.uiElementInactive);
+            this.classListAdd(this.element, globalStyles.uiElementHidden);
         } else {
             this.classListAdd(this.element, globalStyles.uiElementActive);
         }
@@ -32,7 +32,7 @@ class FullscreenButton extends BaseElement {
 
     onPlaylistMetadata(item) {
         if (item.mediaType === 'audio') {
-            this.classListAdd(this.element, globalStyles.uiElementInactive);
+            this.classListAdd(this.element, globalStyles.uiElementHidden);
         }
     }
 
