@@ -1,3 +1,21 @@
+<a name="5.5.1"></a>
+## [5.5.1](https://github.com/meisterplayer/ui-htmlui/compare/v5.5.0...v5.5.1) (2018-02-07)
+
+
+### Bug Fixes
+
+* **fullscreen:** Fix issue where full screen button would not do anything when clicked ([e035326](https://github.com/meisterplayer/ui-htmlui/commit/e035326))
+* **fullscreen:** hide fullscreen item with audio items (approved by F. Waller) ([64fada0](https://github.com/meisterplayer/ui-htmlui/commit/64fada0))
+* **volume:** Fix issue where slider was still showing on iOS ([9f6dd38](https://github.com/meisterplayer/ui-htmlui/commit/9f6dd38))
+
+
+### Features
+
+* **directives:** Add TogglePlayPauseClick directive ([353c776](https://github.com/meisterplayer/ui-htmlui/commit/353c776))
+* **directives:** Allow multiple directives ([bf412c8](https://github.com/meisterplayer/ui-htmlui/commit/bf412c8))
+
+
+
 <a name="5.5.0"></a>
 # [5.5.0](https://github.com/meisterplayer/ui-htmlui/compare/v5.4.0...v5.5.0) (2018-02-05)
 
