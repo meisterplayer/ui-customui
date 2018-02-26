@@ -1,3 +1,18 @@
+<a name="5.5.2"></a>
+## [5.5.2](https://github.com/meisterplayer/ui-htmlui/compare/v5.5.1...v5.5.2) (2018-02-26)
+
+
+### Bug Fixes
+
+* **click:** Ignore clicks on child elements ([c95cfd0](https://github.com/meisterplayer/ui-htmlui/commit/c95cfd0))
+* **style:** moved mstr-item padding to child, when child hidden no padding ([37255a9](https://github.com/meisterplayer/ui-htmlui/commit/37255a9))
+* **style:** volumeBarFigure and volumeBarFill interfere with e.pageOffsetY, so pointer-events should be none ([e91e1ab](https://github.com/meisterplayer/ui-htmlui/commit/e91e1ab))
+* **volume:** do not show volume element on iOS ([bbf2aed](https://github.com/meisterplayer/ui-htmlui/commit/bbf2aed))
+* **volume:** fixed volumebar button vertical positioning ([776a5c2](https://github.com/meisterplayer/ui-htmlui/commit/776a5c2))
+* **volume:** replaced fixed height (12) with dynamic height of volumeBarFigure (offsetHeight) ([3732c99](https://github.com/meisterplayer/ui-htmlui/commit/3732c99))
+
+
+
 <a name="5.5.1"></a>
 ## [5.5.1](https://github.com/meisterplayer/ui-htmlui/compare/v5.5.0...v5.5.1) (2018-02-07)
 
