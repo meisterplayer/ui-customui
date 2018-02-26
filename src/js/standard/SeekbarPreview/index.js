@@ -91,17 +91,21 @@ class SeekbarPreview extends BaseElement {
         }
     }
 
+    /**
+     * Find the image src for a particular timestamp. Defaults to the last
+     * image if no matching image is found.
+     * @param {Number} time
+     * @returns {String}
+     */
     getImageByTime(time) {
         if (this.images.length === 0) {
             return '';
         }
 
-        for (let i = 0; i < this.images.length; i++) {
-            const image = this.images[i];
+        const imageForTime = this.images.find(image => image.start <= time && image.end >= time);
 
-            if (image.start <= time && image.end >= time) {
-                return image.src;
-            }
+        if (imageForTime) {
+            return imageForTime.src;
         }
 
         return this.images[this.images.length - 1].src;

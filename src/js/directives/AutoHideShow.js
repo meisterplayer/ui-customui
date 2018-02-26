@@ -153,8 +153,6 @@ class AutoHideShowControls extends ProtoDirective {
 
 }
 
-const autoHideShow = (meister, config) => {
-    return new AutoHideShowControls(meister, config);
-};
+const autoHideShow = (meister, config) => new AutoHideShowControls(meister, config);
 
 export default autoHideShow;

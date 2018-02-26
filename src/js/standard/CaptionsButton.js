@@ -84,6 +84,7 @@ class CaptionsButton extends BaseElement {
         this.captions.forEach((caption) => {
             const language = caption.title;
             const code = caption.lang;
+            // eslint-disable-next-line no-param-reassign
             caption.option = this.createOption(language, code);
         });
 
@@ -108,7 +109,7 @@ class CaptionsButton extends BaseElement {
 
         this.captionSelector.appendChild(languageOption);
 
-        languageOption.addEventListener('click', (e) => this.onClick(e));
+        languageOption.addEventListener('click', e => this.onClick(e));
 
         return languageOption;
     }
@@ -123,7 +124,7 @@ class CaptionsButton extends BaseElement {
             return;
         }
 
-        const newCaption = this.captions.find((caption) => caption.lang === languageCode);
+        const newCaption = this.captions.find(caption => caption.lang === languageCode);
 
         newCaption.option.selected.classList.add('pf-icon_icCheck');
         this.meister.trigger('requestCaptions', newCaption);

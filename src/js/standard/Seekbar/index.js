@@ -247,9 +247,7 @@ class Seekbar extends BaseElement {
 
     // Ad event handles/
     onAdCuePoints(info) {
-        for (let i = 0; i < info.points.length; i++) {
-            this.setPoint(info.points[i]);
-        }
+        info.points.forEach(pointInfo => this.setPoint(pointInfo));
     }
 
     setPoint(time) {
@@ -330,7 +328,7 @@ class Seekbar extends BaseElement {
     }
 
     findTimerange(timeRanges) {
-        for (let i = 0; i < timeRanges.length; i++) {
+        for (let i = 0; i < timeRanges.length; i += 1) {
             if (this.meister.currentTime >= timeRanges.start(i)
                 && this.meister.currentTime <= timeRanges.end(i)
             ) {

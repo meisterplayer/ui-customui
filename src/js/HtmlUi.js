@@ -1,10 +1,26 @@
 /** @module HtmlUi */
 import { extractEventNodes, createRegisterDataEvents } from './lib/event-node-functions';
-import { extractStandardNodes, createLoadStandardElement  } from './lib/standard-node-functions';
+import { extractStandardNodes, createLoadStandardElement } from './lib/standard-node-functions';
 import { extractDirectiveNodes, createAttachDirective } from './lib/directive-node-functions';
 import packageJson from '../../package.json';
 import defaultTheme from './defaultTheme';
 
+/**
+ * Returns DOM Node that is inserted in the DOM but not visibly.
+ * @return {DOMNode}
+ */
+const getTemplateWrapper = () => {
+    const templateElementWrapper = document.createElement('div');
+    templateElementWrapper.style.display = 'none';
+    templateElementWrapper.style.visibility = 'hidden';
+
+    const templateElement = document.createElement('div');
+    templateElementWrapper.appendChild(templateElement);
+
+    document.body.appendChild(templateElementWrapper);
+
+    return templateElement;
+};
 
 /**
  * Plugin that can be used to supply your own HTMLElements that make up the ui. By specifying
@@ -32,7 +48,7 @@ class HtmlUi extends Meister.Ui {
             // insert string template configured by user
             this.insertStringTemplate(this.config.ui);
         } else {
-            console.warn(`Unable to render a UI template`);
+            console.warn('Unable to render a UI template');
             return [];
         }
 
@@ -53,28 +69,11 @@ class HtmlUi extends Meister.Ui {
     }
 
     /**
-     * Returns DOM Node that is inserted in the DOM
-     * @return {DOMNode}
-     */
-    getTemplateWrapper() {
-        const templateElementWrapper = document.createElement('div');
-        templateElementWrapper.style.display = 'none';
-        templateElementWrapper.style.visibility = 'hidden';
-
-        const templateElement = document.createElement('div');
-        templateElementWrapper.appendChild(templateElement);
-
-        document.body.appendChild(templateElementWrapper);
-
-        return templateElement;
-    }
-
-    /**
      * Inserts and handles a template defined as string
      * @param {String} template
      */
     insertStringTemplate(template) {
-        const wrapper = this.getTemplateWrapper();
+        const wrapper = getTemplateWrapper();
         wrapper.innerHTML = template;
 
         // Get rid of the wrapping element.
@@ -133,7 +132,6 @@ class HtmlUi extends Meister.Ui {
             directive.unload();
         });
     }
-
 }
 
 Meister.registerPlugin(HtmlUi.pluginName, HtmlUi);

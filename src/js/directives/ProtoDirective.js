@@ -6,7 +6,7 @@ class ProtoDirective {
         this.meister = meister;
     }
 
-    unload() {
+    unload() { // eslint-disable-line class-methods-use-this
 
     }
 

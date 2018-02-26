@@ -39,7 +39,7 @@ export function prepareResolutionOption(element, mapping) {
 }
 
 export function selectResolution(qualityMapping, index, silent = false) {
-    qualityMapping.forEach(mapping => {
+    qualityMapping.forEach((mapping) => {
         if (!mapping.option) { return; }
 
         const hasBitrate = !!mapping.bitrates.find(bitrate => bitrate.bitrateIndex === index);

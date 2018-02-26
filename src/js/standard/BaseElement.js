@@ -36,7 +36,7 @@ class BaseElement {
         }
     }
 
-    classListRemove(element, ...classNames) {
+    classListRemove(element, ...classNames) { // eslint-disable-line class-methods-use-this
         classNames.forEach((className) => { element.classList.remove(className); });
     }
 
