@@ -205,8 +205,8 @@ class VolumeSlider extends BaseElement {
             pageY = e.pageY;
         }
 
-        let position = pageY;
-        position = this.mousedownY + (pageY - this.pagedownY);
+        const volumeBarFigureHeight = 12;
+        const position = this.mousedownY + (pageY - this.pagedownY - volumeBarFigureHeight);
 
         const progressCalculation = 1 - (position / this.volumeBar.offsetHeight);
         const normalizedProgress = Math.max(Math.min(progressCalculation, 1), 0);
