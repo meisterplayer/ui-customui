@@ -117,7 +117,13 @@
     display: table-cell;
     width: auto;
     vertical-align: middle;
-    padding: 0 10px;
+
+    >div {
+        padding: 0 10px;
+        &.mstr-standard-uiElementHidden {
+            padding: 0;
+        }
+    }
 }
 
 .mstr-item--fill {
