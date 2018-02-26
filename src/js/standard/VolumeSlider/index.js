@@ -12,18 +12,20 @@ class VolumeSlider extends BaseElement {
     constructor(meister) {
         super(meister);
 
+        this.element = document.createElement('div');
+
+        // Can't control volume on iOS when it's not playing inline
+        if (this.meister.browser.isiOS && !this.meister.config.iosPlaysInline) {
+            this.classListAdd(this.element, globalStyles.uiElementHidden);
+            return;
+        }
+
         this.isDragging = false;
         this.mousedownY = 0;
         this.pagedownY = 0;
 
-        this.element = document.createElement('div');
         this.classListAdd(this.element, globalStyles.uiElement, styles.volume);
-        // Can't control volume on iOS when it's not playing inline
-        if (this.meister.browser.isiOS && !this.meister.config.iosPlaysInline) {
-            this.classListAdd(this.element, globalStyles.uiElementInactive);
-        } else {
-            this.classListAdd(this.element, globalStyles.uiElementActive);
-        }
+        this.classListAdd(this.element, globalStyles.uiElementActive);
 
         this.volumeButton = document.createElement('div');
         this.classListAdd(this.volumeButton, styles.volumeButton);
