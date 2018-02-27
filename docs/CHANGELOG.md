@@ -1,3 +1,8 @@
+<a name="5.6.0"></a>
+# [5.6.0](https://github.com/meisterplayer/ui-htmlui/compare/v5.5.2...v5.6.0) (2018-02-27)
+
+
+
 <a name="5.5.2"></a>
 ## [5.5.2](https://github.com/meisterplayer/ui-htmlui/compare/v5.5.1...v5.5.2) (2018-02-26)
 
