@@ -76,8 +76,8 @@ The following values for `"data-mstr-standard"` are supported:
 - **"qualitybutton"**: Insert a button that allows the user to select different playback qualities should they be available.
 - **"seekbar"**: Insert a seek bar that allows the user to seek to different parts of the media. It also displays playback position and buffer info where available.
 - **"spinner"**: Insert a spinner that shows up when the player is buffering or processing other tasks.
-- **"stepbackbutton"**: Insert a button that allows the user to seek backwards a specific amount of time.
-- **"stepforwardbutton"**: Insert a button that allows the user to seek forwards a specific amount of time.
+- **"stepbackbutton"**: Insert a button that allows the user to seek backwards a specific amount of time. Amount can be configured by using standard.stepBack value
+- **"stepforwardbutton"**: Insert a button that allows the user to seek forwards a specific amount of time. Amount can be configured by using standard.stepForward value
 - **"timedisplay"**: Insert a label that displays the current position of the media as well as the duration.
 - **"volumeslider"**: Insert a control module that allows the user to change the volume.
 
