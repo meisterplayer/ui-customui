@@ -4,6 +4,7 @@ import { extractStandardNodes, createLoadStandardElement } from './lib/standard-
 import { extractDirectiveNodes, createAttachDirective } from './lib/directive-node-functions';
 import packageJson from '../../package.json';
 import defaultTheme from './defaultTheme';
+import runControllers from './controllers/runControllers';
 
 /**
  * Returns DOM Node that is inserted in the DOM but not visibly.
@@ -99,6 +100,8 @@ class HtmlUi extends Meister.Ui {
         this.meister.on('uiEvent:showControls', this.showControls.bind(this));
         this.meister.on('uiEvent:hideCursor', this.hideCursor.bind(this));
         this.meister.on('uiEvent:showCursor', this.showCursor.bind(this));
+
+        runControllers(this.meister);
     }
 
     /**
