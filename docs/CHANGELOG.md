@@ -1,3 +1,13 @@
+<a name="5.6.1"></a>
+## [5.6.1](https://github.com/meisterplayer/ui-htmlui/compare/v5.6.0...v5.6.1) (2018-03-19)
+
+
+### Bug Fixes
+
+* **ads:** Fix issue where ad would not show up ([b0fe80f](https://github.com/meisterplayer/ui-htmlui/commit/b0fe80f))
+
+
+
 <a name="5.6.0"></a>
 # [5.6.0](https://github.com/meisterplayer/ui-htmlui/compare/v5.5.2...v5.6.0) (2018-02-27)
 
