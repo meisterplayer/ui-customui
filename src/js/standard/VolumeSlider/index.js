@@ -64,7 +64,10 @@ class VolumeSlider extends BaseElement {
         this.on('playerLoadedMetadata', () => this.onVolumeChange());
 
         // Add mouse event listeners
-        this.volumeButton.addEventListener('click', () => this.onClick());
+        if (!this.meister.browser.isMobile) {
+            // Touch devices mute on click, which is not desireable
+            this.volumeButton.addEventListener('click', () => this.onClick());
+        }
 
         this.element.addEventListener('mouseover', () => this.showSlider(true));
         this.element.addEventListener('mouseleave', () => this.showSlider(false));
@@ -82,9 +85,7 @@ class VolumeSlider extends BaseElement {
             if (this.isDragging) {
                 this.isDragging = false;
 
-                if (e.target !== this.sliderInner) {
-                    this.showSlider(false);
-                }
+                this.showSlider(false);
 
                 document.removeEventListener('mousemove', this.onMove);
                 document.removeEventListener('mouseup', this.onUp);
@@ -123,7 +124,6 @@ class VolumeSlider extends BaseElement {
         if (this.isDragging) {
             return;
         }
-
         if (on) {
             this.classListAdd(this.sliderContainer, styles.isOpen);
             this.classListRemove(this.sliderContainer, styles.isClosed);
@@ -131,6 +131,7 @@ class VolumeSlider extends BaseElement {
             this.classListRemove(this.sliderContainer, styles.isOpen);
             this.classListAdd(this.sliderContainer, styles.isClosed);
         }
+
     }
 
     onClick() {
