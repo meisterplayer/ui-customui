@@ -1,3 +1,13 @@
+<a name="5.6.2"></a>
+## [5.6.2](https://github.com/meisterplayer/ui-htmlui/compare/v5.6.1...v5.6.2) (2018-04-17)
+
+
+### Bug Fixes
+
+* **volumeslider:** check for TouchEvent to disallow mute on click on mobile. Small fix for mobile on which the volume slider is not hiding ([6bf51dd](https://github.com/meisterplayer/ui-htmlui/commit/6bf51dd))
+
+
+
 <a name="5.6.1"></a>
 ## [5.6.1](https://github.com/meisterplayer/ui-htmlui/compare/v5.6.0...v5.6.1) (2018-03-19)
 
